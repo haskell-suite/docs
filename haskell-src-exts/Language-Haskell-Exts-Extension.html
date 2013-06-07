@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Language.Haskell.Exts.Extension</title><link href="ocean.css" rel="stylesheet" type="text/css" title="Ocean" /><script src="haddock-util.js" type="text/javascript"></script><script type="text/javascript">//<![CDATA[
+window.onload = function () {pageLoad();setSynopsis("mini_Language-Haskell-Exts-Extension.html");};
+//]]>
+</script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption">haskell-src-exts-1.14.0: Manipulating Haskell source: abstract syntax, lexer, parser, and pretty-printer</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Portability</th><td>portable</td></tr><tr><th>Stability</th><td>transient</td></tr><tr><th>Maintainer</th><td>Niklas Broberg, niklas.broberg@chalmers.se</td></tr><tr><th>Safe Haskell</th><td>Safe-Inferred</td></tr></table><p class="caption">Language.Haskell.Exts.Extension</p></div><div id="table-of-contents"><p class="caption">Contents</p><ul><li><a href="#g:1">Language definitions
+</a></li><li><a href="#g:2">Extensions
+</a></li><li><a href="#g:3">Extension groups
+</a></li><li><a href="#g:4">Semantics of extensions applied to languages
+</a></li></ul></div><div id="description"><p class="caption">Description</p><div class="doc"><p>This module defines the list of recognized modular features
+ of Haskell, most often (sloppily) referred to as <a href="extensions.html">extensions</a>.
+</p><p>Closely mimicking the Language.Haskell.Extension module from
+ the Cabal library, this package also includes functionality for
+ <a href="computing.html">computing</a> languages as sets of features. Also, we make no
+ promise not to add extensions not yet recognized by Cabal.
+</p></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><span class="keyword">data</span>  <a href="#t:Language">Language</a> <ul class="subs"><li>= <a href="#v:Haskell98">Haskell98</a>  </li><li>| <a href="#v:Haskell2010">Haskell2010</a>  </li><li>| <a href="#v:HaskellAllDisabled">HaskellAllDisabled</a>  </li><li>| <a href="#v:UnknownLanguage">UnknownLanguage</a> <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a>  </li></ul></li><li class="src short"><a href="#v:knownLanguages">knownLanguages</a> :: [<a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a>]</li><li class="src short"><a href="#v:classifyLanguage">classifyLanguage</a> :: <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a> -&gt; <a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a></li><li class="src short"><a href="#v:prettyLanguage">prettyLanguage</a> :: <a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a> -&gt; <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a></li><li class="src short"><span class="keyword">data</span>  <a href="#t:Extension">Extension</a> <ul class="subs"><li>= <a href="#v:EnableExtension">EnableExtension</a> <a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a>  </li><li>| <a href="#v:DisableExtension">DisableExtension</a> <a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a>  </li><li>| <a href="#v:UnknownExtension">UnknownExtension</a> <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a>  </li></ul></li><li class="src short"><span class="keyword">data</span>  <a href="#t:KnownExtension">KnownExtension</a> <ul class="subs"><li>= <a href="#v:OverlappingInstances">OverlappingInstances</a>  </li><li>| <a href="#v:UndecidableInstances">UndecidableInstances</a>  </li><li>| <a href="#v:IncoherentInstances">IncoherentInstances</a>  </li><li>| <a href="#v:RecursiveDo">RecursiveDo</a>  </li><li>| <a href="#v:ParallelListComp">ParallelListComp</a>  </li><li>| <a href="#v:MultiParamTypeClasses">MultiParamTypeClasses</a>  </li><li>| <a href="#v:MonomorphismRestriction">MonomorphismRestriction</a>  </li><li>| <a href="#v:FunctionalDependencies">FunctionalDependencies</a>  </li><li>| <a href="#v:Rank2Types">Rank2Types</a>  </li><li>| <a href="#v:RankNTypes">RankNTypes</a>  </li><li>| <a href="#v:PolymorphicComponents">PolymorphicComponents</a>  </li><li>| <a href="#v:ExistentialQuantification">ExistentialQuantification</a>  </li><li>| <a href="#v:ScopedTypeVariables">ScopedTypeVariables</a>  </li><li>| <a href="#v:PatternSignatures">PatternSignatures</a>  </li><li>| <a href="#v:ImplicitParams">ImplicitParams</a>  </li><li>| <a href="#v:FlexibleContexts">FlexibleContexts</a>  </li><li>| <a href="#v:FlexibleInstances">FlexibleInstances</a>  </li><li>| <a href="#v:EmptyDataDecls">EmptyDataDecls</a>  </li><li>| <a href="#v:CPP">CPP</a>  </li><li>| <a href="#v:KindSignatures">KindSignatures</a>  </li><li>| <a href="#v:BangPatterns">BangPatterns</a>  </li><li>| <a href="#v:TypeSynonymInstances">TypeSynonymInstances</a>  </li><li>| <a href="#v:TemplateHaskell">TemplateHaskell</a>  </li><li>| <a href="#v:ForeignFunctionInterface">ForeignFunctionInterface</a>  </li><li>| <a href="#v:Arrows">Arrows</a>  </li><li>| <a href="#v:Generics">Generics</a>  </li><li>| <a href="#v:ImplicitPrelude">ImplicitPrelude</a>  </li><li>| <a href="#v:NamedFieldPuns">NamedFieldPuns</a>  </li><li>| <a href="#v:PatternGuards">PatternGuards</a>  </li><li>| <a href="#v:GeneralizedNewtypeDeriving">GeneralizedNewtypeDeriving</a>  </li><li>| <a href="#v:ExtensibleRecords">ExtensibleRecords</a>  </li><li>| <a href="#v:RestrictedTypeSynonyms">RestrictedTypeSynonyms</a>  </li><li>| <a href="#v:HereDocuments">HereDocuments</a>  </li><li>| <a href="#v:MagicHash">MagicHash</a>  </li><li>| <a href="#v:TypeFamilies">TypeFamilies</a>  </li><li>| <a href="#v:StandaloneDeriving">StandaloneDeriving</a>  </li><li>| <a href="#v:UnicodeSyntax">UnicodeSyntax</a>  </li><li>| <a href="#v:UnliftedFFITypes">UnliftedFFITypes</a>  </li><li>| <a href="#v:LiberalTypeSynonyms">LiberalTypeSynonyms</a>  </li><li>| <a href="#v:TypeOperators">TypeOperators</a>  </li><li>| <a href="#v:RecordWildCards">RecordWildCards</a>  </li><li>| <a href="#v:RecordPuns">RecordPuns</a>  </li><li>| <a href="#v:DisambiguateRecordFields">DisambiguateRecordFields</a>  </li><li>| <a href="#v:OverloadedStrings">OverloadedStrings</a>  </li><li>| <a href="#v:GADTs">GADTs</a>  </li><li>| <a href="#v:MonoPatBinds">MonoPatBinds</a>  </li><li>| <a href="#v:RelaxedPolyRec">RelaxedPolyRec</a>  </li><li>| <a href="#v:ExtendedDefaultRules">ExtendedDefaultRules</a>  </li><li>| <a href="#v:UnboxedTuples">UnboxedTuples</a>  </li><li>| <a href="#v:DeriveDataTypeable">DeriveDataTypeable</a>  </li><li>| <a href="#v:ConstrainedClassMethods">ConstrainedClassMethods</a>  </li><li>| <a href="#v:PackageImports">PackageImports</a>  </li><li>| <a href="#v:ImpredicativeTypes">ImpredicativeTypes</a>  </li><li>| <a href="#v:NewQualifiedOperators">NewQualifiedOperators</a>  </li><li>| <a href="#v:PostfixOperators">PostfixOperators</a>  </li><li>| <a href="#v:QuasiQuotes">QuasiQuotes</a>  </li><li>| <a href="#v:TransformListComp">TransformListComp</a>  </li><li>| <a href="#v:ViewPatterns">ViewPatterns</a>  </li><li>| <a href="#v:XmlSyntax">XmlSyntax</a>  </li><li>| <a href="#v:RegularPatterns">RegularPatterns</a>  </li><li>| <a href="#v:TupleSections">TupleSections</a>  </li><li>| <a href="#v:GHCForeignImportPrim">GHCForeignImportPrim</a>  </li><li>| <a href="#v:NPlusKPatterns">NPlusKPatterns</a>  </li><li>| <a href="#v:DoAndIfThenElse">DoAndIfThenElse</a>  </li><li>| <a href="#v:RebindableSyntax">RebindableSyntax</a>  </li><li>| <a href="#v:ExplicitForAll">ExplicitForAll</a>  </li><li>| <a href="#v:DatatypeContexts">DatatypeContexts</a>  </li><li>| <a href="#v:MonoLocalBinds">MonoLocalBinds</a>  </li><li>| <a href="#v:DeriveFunctor">DeriveFunctor</a>  </li><li>| <a href="#v:DeriveTraversable">DeriveTraversable</a>  </li><li>| <a href="#v:DeriveFoldable">DeriveFoldable</a>  </li><li>| <a href="#v:NondecreasingIndentation">NondecreasingIndentation</a>  </li><li>| <a href="#v:CApiFFI">CApiFFI</a>  </li></ul></li><li class="src short"><a href="#v:classifyExtension">classifyExtension</a> :: <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a> -&gt; <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a></li><li class="src short"><a href="#v:parseExtension">parseExtension</a> :: <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a> -&gt; <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a></li><li class="src short"><a href="#v:prettyExtension">prettyExtension</a> :: <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a> -&gt; <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a></li><li class="src short"><a href="#v:ghcDefault">ghcDefault</a> :: [<a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>]</li><li class="src short"><a href="#v:glasgowExts">glasgowExts</a> :: [<a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>]</li><li class="src short"><a href="#v:knownExtensions">knownExtensions</a> :: [<a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>]</li><li class="src short"><a href="#v:deprecatedExtensions">deprecatedExtensions</a> :: [(<a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>, <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-Maybe.html#t:Maybe">Maybe</a> <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>)]</li><li class="src short"><a href="#v:impliesExts">impliesExts</a> :: [<a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a>] -&gt; [<a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a>]</li><li class="src short"><a href="#v:toExtensionList">toExtensionList</a> :: <a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a> -&gt; [<a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>] -&gt; [<a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a>]</li></ul></div><div id="interface"><h1 id="g:1">Language definitions
+</h1><div class="top"><p class="src"><span class="keyword">data</span>  <a name="t:Language" class="def">Language</a>  </p><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:Haskell98" class="def">Haskell98</a></td><td class="doc"><p>The Haskell 98 language as defined by the Haskell 98 report.
+ <a href="http://haskell.org/onlinereport/">http://haskell.org/onlinereport/</a>
+</p></td></tr><tr><td class="src"><a name="v:Haskell2010" class="def">Haskell2010</a></td><td class="doc"><p>The Haskell 2010 language as defined by the Haskell 2010 report.
+ <a href="http://www.haskell.org/onlinereport/haskell2010">http://www.haskell.org/onlinereport/haskell2010</a>
+</p></td></tr><tr><td class="src"><a name="v:HaskellAllDisabled" class="def">HaskellAllDisabled</a></td><td class="doc"><p>The minimal language resulting from disabling all recognized
+ extensions - including ones that are part of all known language
+ definitions e.g. MonomorphismRestriction.
+</p></td></tr><tr><td class="src"><a name="v:UnknownLanguage" class="def">UnknownLanguage</a> <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a></td><td class="doc"><p>An unknown language, identified by its name.
+</p></td></tr></table></div><div class="subs instances"><p id="control.i:Language" class="caption collapser" onclick="toggleSection('i:Language')">Instances</p><div id="section.i:Language" class="show"><table><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-Eq.html#t:Eq">Eq</a> <a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Text-Read.html#t:Read">Read</a> <a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Text-Show.html#t:Show">Show</a> <a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a></td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:knownLanguages" class="def">knownLanguages</a> :: [<a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a>]</p></div><div class="top"><p class="src"><a name="v:classifyLanguage" class="def">classifyLanguage</a> :: <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a> -&gt; <a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a></p></div><div class="top"><p class="src"><a name="v:prettyLanguage" class="def">prettyLanguage</a> :: <a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a> -&gt; <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a></p></div><h1 id="g:2">Extensions
+</h1><div class="top"><p class="src"><span class="keyword">data</span>  <a name="t:Extension" class="def">Extension</a>  </p><div class="doc"><p>This represents language extensions beyond a base <code><a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a></code> definition
+ (such as <code><a href="Language-Haskell-Exts-Extension.html#v:Haskell98">Haskell98</a></code>) that are supported by some implementations, usually
+ in some special mode.
+</p></div><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:EnableExtension" class="def">EnableExtension</a> <a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a></td><td class="doc"><p>Enable a known extension
+</p></td></tr><tr><td class="src"><a name="v:DisableExtension" class="def">DisableExtension</a> <a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a></td><td class="doc"><p>Disable a known extension
+</p></td></tr><tr><td class="src"><a name="v:UnknownExtension" class="def">UnknownExtension</a> <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a></td><td class="doc"><p>An unknown extension, identified by the name of its <code>LANGUAGE</code>
+ pragma.
+</p></td></tr></table></div><div class="subs instances"><p id="control.i:Extension" class="caption collapser" onclick="toggleSection('i:Extension')">Instances</p><div id="section.i:Extension" class="show"><table><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-Eq.html#t:Eq">Eq</a> <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Text-Read.html#t:Read">Read</a> <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Text-Show.html#t:Show">Show</a> <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a></td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><span class="keyword">data</span>  <a name="t:KnownExtension" class="def">KnownExtension</a>  </p><div class="subs constructors"><p class="caption">Constructors</p><table><tr><td class="src"><a name="v:OverlappingInstances" class="def">OverlappingInstances</a></td><td class="doc"><dl><dt>GHC &#167; 7.6.3.4</dt><dd> Allow overlapping class instances,
+ provided there is a unique most specific instance for each use.
+</dd></dl></td></tr><tr><td class="src"><a name="v:UndecidableInstances" class="def">UndecidableInstances</a></td><td class="doc"><dl><dt>GHC &#167; 7.6.3.3</dt><dd> Ignore structural rules guaranteeing the
+ termination of class instance resolution.  Termination is
+ guaranteed by a fixed-depth recursion stack, and compilation
+ may fail if this depth is exceeded.
+</dd></dl></td></tr><tr><td class="src"><a name="v:IncoherentInstances" class="def">IncoherentInstances</a></td><td class="doc"><dl><dt>GHC &#167; 7.6.3.4</dt><dd> Implies <code><a href="Language-Haskell-Exts-Extension.html#v:OverlappingInstances">OverlappingInstances</a></code>.  Allow the
+ implementation to choose an instance even when it is possible
+ that further instantiation of types will lead to a more specific
+ instance being applicable.
+</dd></dl></td></tr><tr><td class="src"><a name="v:RecursiveDo" class="def">RecursiveDo</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.8.2</dt><dd> Deprecated in GHC.  Allows recursive bindings
+ using <code>mdo</code>, a variant of <code>do</code>.  <code>DoRec</code> provides a different,
+ preferred syntax.
+</dd></dl></td></tr><tr><td class="src"><a name="v:ParallelListComp" class="def">ParallelListComp</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.9</dt><dd> Provide syntax for writing list
+ comprehensions which iterate over several lists together, like
+ the <code><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-List.html#v:zipWith">zipWith</a></code> family of functions.
+</dd></dl></td></tr><tr><td class="src"><a name="v:MultiParamTypeClasses" class="def">MultiParamTypeClasses</a></td><td class="doc"><dl><dt>GHC &#167; 7.6.1.1</dt><dd> Allow multiple parameters in a type class.
+</dd></dl></td></tr><tr><td class="src"><a name="v:MonomorphismRestriction" class="def">MonomorphismRestriction</a></td><td class="doc"><dl><dt>GHC &#167; 7.17</dt><dd> Enable the dreaded monomorphism restriction.
+</dd></dl></td></tr><tr><td class="src"><a name="v:FunctionalDependencies" class="def">FunctionalDependencies</a></td><td class="doc"><dl><dt>GHC &#167; 7.6.2</dt><dd> Allow a specification attached to a
+ multi-parameter type class which indicates that some parameters
+ are entirely determined by others. The implementation will check
+ that this property holds for the declared instances, and will use
+ this property to reduce ambiguity in instance resolution.
+</dd></dl></td></tr><tr><td class="src"><a name="v:Rank2Types" class="def">Rank2Types</a></td><td class="doc"><dl><dt>GHC &#167; 7.8.5</dt><dd> Like <code><a href="Language-Haskell-Exts-Extension.html#v:RankNTypes">RankNTypes</a></code> but does not allow a
+ higher-rank type to itself appear on the left of a function
+ arrow.
+</dd></dl></td></tr><tr><td class="src"><a name="v:RankNTypes" class="def">RankNTypes</a></td><td class="doc"><dl><dt>GHC &#167; 7.8.5</dt><dd> Allow a universally-quantified type to occur on
+ the left of a function arrow.
+</dd></dl></td></tr><tr><td class="src"><a name="v:PolymorphicComponents" class="def">PolymorphicComponents</a></td><td class="doc"><dl><dt>GHC &#167; 7.8.5</dt><dd> Allow data constructors to have polymorphic
+ arguments.  Unlike <code><a href="Language-Haskell-Exts-Extension.html#v:RankNTypes">RankNTypes</a></code>, does not allow this for ordinary
+ functions.
+</dd></dl></td></tr><tr><td class="src"><a name="v:ExistentialQuantification" class="def">ExistentialQuantification</a></td><td class="doc"><dl><dt>GHC &#167; 7.4.4</dt><dd> Allow existentially-quantified data constructors.
+</dd></dl></td></tr><tr><td class="src"><a name="v:ScopedTypeVariables" class="def">ScopedTypeVariables</a></td><td class="doc"><dl><dt>GHC &#167; 7.8.7</dt><dd> Cause a type variable in a signature, which has an
+ explicit <code>forall</code> quantifier, to scope over the definition of the
+ accompanying value declaration.
+</dd></dl></td></tr><tr><td class="src"><a name="v:PatternSignatures" class="def">PatternSignatures</a></td><td class="doc"><p>Deprecated, use <code><a href="Language-Haskell-Exts-Extension.html#v:ScopedTypeVariables">ScopedTypeVariables</a></code> instead.
+</p></td></tr><tr><td class="src"><a name="v:ImplicitParams" class="def">ImplicitParams</a></td><td class="doc"><dl><dt>GHC &#167; 7.8.3</dt><dd> Enable implicit function parameters with dynamic
+ scope.
+</dd></dl></td></tr><tr><td class="src"><a name="v:FlexibleContexts" class="def">FlexibleContexts</a></td><td class="doc"><dl><dt>GHC &#167; 7.8.2</dt><dd> Relax some restrictions on the form of the context
+ of a type signature.
+</dd></dl></td></tr><tr><td class="src"><a name="v:FlexibleInstances" class="def">FlexibleInstances</a></td><td class="doc"><dl><dt>GHC &#167; 7.6.3.2</dt><dd> Relax some restrictions on the form of the
+ context of an instance declaration.
+</dd></dl></td></tr><tr><td class="src"><a name="v:EmptyDataDecls" class="def">EmptyDataDecls</a></td><td class="doc"><dl><dt>GHC &#167; 7.4.1</dt><dd> Allow data type declarations with no constructors.
+</dd></dl></td></tr><tr><td class="src"><a name="v:CPP" class="def">CPP</a></td><td class="doc"><dl><dt>GHC &#167; 4.10.3</dt><dd> Run the C preprocessor on Haskell source code.
+</dd></dl></td></tr><tr><td class="src"><a name="v:KindSignatures" class="def">KindSignatures</a></td><td class="doc"><dl><dt>GHC &#167; 7.8.4</dt><dd> Allow an explicit kind signature giving the kind of
+ types over which a type variable ranges.
+</dd></dl></td></tr><tr><td class="src"><a name="v:BangPatterns" class="def">BangPatterns</a></td><td class="doc"><dl><dt>GHC &#167; 7.11</dt><dd> Enable a form of pattern which forces evaluation
+ before an attempted match, and a form of strict <code>let</code>/<code>where</code>
+ binding.
+</dd></dl></td></tr><tr><td class="src"><a name="v:TypeSynonymInstances" class="def">TypeSynonymInstances</a></td><td class="doc"><dl><dt>GHC &#167; 7.6.3.1</dt><dd> Allow type synonyms in instance heads.
+</dd></dl></td></tr><tr><td class="src"><a name="v:TemplateHaskell" class="def">TemplateHaskell</a></td><td class="doc"><dl><dt>GHC &#167; 7.9</dt><dd> Enable Template Haskell, a system for compile-time
+ metaprogramming.
+</dd></dl></td></tr><tr><td class="src"><a name="v:ForeignFunctionInterface" class="def">ForeignFunctionInterface</a></td><td class="doc"><dl><dt>GHC &#167; 8</dt><dd> Enable the Foreign Function Interface.  In GHC,
+ implements the standard Haskell 98 Foreign Function Interface
+ Addendum, plus some GHC-specific extensions.
+</dd></dl></td></tr><tr><td class="src"><a name="v:Arrows" class="def">Arrows</a></td><td class="doc"><dl><dt>GHC &#167; 7.10</dt><dd> Enable arrow notation.
+</dd></dl></td></tr><tr><td class="src"><a name="v:Generics" class="def">Generics</a></td><td class="doc"><dl><dt>GHC &#167; 7.16</dt><dd> Enable generic type classes, with default instances
+ defined in terms of the algebraic structure of a type.
+</dd></dl></td></tr><tr><td class="src"><a name="v:ImplicitPrelude" class="def">ImplicitPrelude</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.11</dt><dd> Enable the implicit importing of the module
+ <code>Prelude</code>.  When disabled, when desugaring certain built-in syntax
+ into ordinary identifiers, use whatever is in scope rather than the
+ <code>Prelude</code> -- version.
+</dd></dl></td></tr><tr><td class="src"><a name="v:NamedFieldPuns" class="def">NamedFieldPuns</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.15</dt><dd> Enable syntax for implicitly binding local names
+ corresponding to the field names of a record.  Puns bind specific
+ names, unlike <code><a href="Language-Haskell-Exts-Extension.html#v:RecordWildCards">RecordWildCards</a></code>.
+</dd></dl></td></tr><tr><td class="src"><a name="v:PatternGuards" class="def">PatternGuards</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.5</dt><dd> Enable a form of guard which matches a pattern and
+ binds variables.
+</dd></dl></td></tr><tr><td class="src"><a name="v:GeneralizedNewtypeDeriving" class="def">GeneralizedNewtypeDeriving</a></td><td class="doc"><dl><dt>GHC &#167; 7.5.4</dt><dd> Allow a type declared with <code>newtype</code> to use
+ <code>deriving</code> for any class with an instance for the underlying type.
+</dd></dl></td></tr><tr><td class="src"><a name="v:ExtensibleRecords" class="def">ExtensibleRecords</a></td><td class="doc"><dl><dt>Hugs &#167; 7.1</dt><dd> Enable the &quot;Trex&quot; extensible records system.
+</dd></dl></td></tr><tr><td class="src"><a name="v:RestrictedTypeSynonyms" class="def">RestrictedTypeSynonyms</a></td><td class="doc"><dl><dt>Hugs &#167; 7.2</dt><dd> Enable type synonyms which are transparent in
+ some definitions and opaque elsewhere, as a way of implementing 
+ abstract datatypes.
+</dd></dl></td></tr><tr><td class="src"><a name="v:HereDocuments" class="def">HereDocuments</a></td><td class="doc"><dl><dt>Hugs &#167; 7.3</dt><dd> Enable an alternate syntax for string literals,
+ with string templating.
+</dd></dl></td></tr><tr><td class="src"><a name="v:MagicHash" class="def">MagicHash</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.2</dt><dd> Allow the character <code>#</code> as a postfix modifier on
+ identifiers.  Also enables literal syntax for unboxed values.
+</dd></dl></td></tr><tr><td class="src"><a name="v:TypeFamilies" class="def">TypeFamilies</a></td><td class="doc"><dl><dt>GHC &#167; 7.7</dt><dd> Allow data types and type synonyms which are
+ indexed by types, i.e. ad-hoc polymorphism for types.
+</dd></dl></td></tr><tr><td class="src"><a name="v:StandaloneDeriving" class="def">StandaloneDeriving</a></td><td class="doc"><dl><dt>GHC &#167; 7.5.2</dt><dd> Allow a standalone declaration which invokes the
+ type class <code>deriving</code> mechanism.
+</dd></dl></td></tr><tr><td class="src"><a name="v:UnicodeSyntax" class="def">UnicodeSyntax</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.1</dt><dd> Allow certain Unicode characters to stand for
+ certain ASCII character sequences, e.g. keywords and punctuation.
+</dd></dl></td></tr><tr><td class="src"><a name="v:UnliftedFFITypes" class="def">UnliftedFFITypes</a></td><td class="doc"><dl><dt>GHC &#167; 8.1.1</dt><dd> Allow the use of unboxed types as foreign types,
+ e.g. in <code>foreign import</code> and <code>foreign export</code>.
+</dd></dl></td></tr><tr><td class="src"><a name="v:LiberalTypeSynonyms" class="def">LiberalTypeSynonyms</a></td><td class="doc"><dl><dt>GHC &#167; 7.4.3</dt><dd> Defer validity checking of types until after
+ expanding type synonyms, relaxing the constraints on how synonyms
+ may be used.
+</dd></dl></td></tr><tr><td class="src"><a name="v:TypeOperators" class="def">TypeOperators</a></td><td class="doc"><dl><dt>GHC &#167; 7.4.2</dt><dd> Allow the name of a type constructor, type class,
+ or type variable to be an infix operator.
+</dd></dl></td></tr><tr><td class="src"><a name="v:RecordWildCards" class="def">RecordWildCards</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.16</dt><dd> Enable syntax for implicitly binding local names
+ corresponding to the field names of a record.  A wildcard binds
+ all unmentioned names, unlike <code><a href="Language-Haskell-Exts-Extension.html#v:NamedFieldPuns">NamedFieldPuns</a></code>.
+</dd></dl></td></tr><tr><td class="src"><a name="v:RecordPuns" class="def">RecordPuns</a></td><td class="doc"><p>Deprecated, use <code><a href="Language-Haskell-Exts-Extension.html#v:NamedFieldPuns">NamedFieldPuns</a></code> instead.
+</p></td></tr><tr><td class="src"><a name="v:DisambiguateRecordFields" class="def">DisambiguateRecordFields</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.14</dt><dd> Allow a record field name to be disambiguated
+ by the type of the record it's in.
+</dd></dl></td></tr><tr><td class="src"><a name="v:OverloadedStrings" class="def">OverloadedStrings</a></td><td class="doc"><dl><dt>GHC &#167; 7.6.4</dt><dd> Enable overloading of string literals using a
+ type class, much like integer literals.
+</dd></dl></td></tr><tr><td class="src"><a name="v:GADTs" class="def">GADTs</a></td><td class="doc"><dl><dt>GHC &#167; 7.4.6</dt><dd> Enable generalized algebraic data types, in
+ which type variables may be instantiated on a per-constructor
+ basis. Implies GADTSyntax.
+</dd></dl></td></tr><tr><td class="src"><a name="v:MonoPatBinds" class="def">MonoPatBinds</a></td><td class="doc"><dl><dt>GHC &#167; 7.17.2</dt><dd> Make pattern bindings monomorphic.
+</dd></dl></td></tr><tr><td class="src"><a name="v:RelaxedPolyRec" class="def">RelaxedPolyRec</a></td><td class="doc"><dl><dt>GHC &#167; 7.8.8</dt><dd> Relax the requirements on mutually-recursive
+ polymorphic functions.
+</dd></dl></td></tr><tr><td class="src"><a name="v:ExtendedDefaultRules" class="def">ExtendedDefaultRules</a></td><td class="doc"><dl><dt>GHC &#167; 2.4.5</dt><dd> Allow default instantiation of polymorphic
+ types in more situations.
+</dd></dl></td></tr><tr><td class="src"><a name="v:UnboxedTuples" class="def">UnboxedTuples</a></td><td class="doc"><dl><dt>GHC &#167; 7.2.2</dt><dd> Enable unboxed tuples.
+</dd></dl></td></tr><tr><td class="src"><a name="v:DeriveDataTypeable" class="def">DeriveDataTypeable</a></td><td class="doc"><dl><dt>GHC &#167; 7.5.3</dt><dd> Enable <code>deriving</code> for classes
+ <code>Data.Typeable.Typeable</code> and <code>Data.Generics.Data</code>.
+</dd></dl></td></tr><tr><td class="src"><a name="v:ConstrainedClassMethods" class="def">ConstrainedClassMethods</a></td><td class="doc"><dl><dt>GHC &#167; 7.6.1.3</dt><dd> Allow a class method's type to place
+ additional constraints on a class type variable.
+</dd></dl></td></tr><tr><td class="src"><a name="v:PackageImports" class="def">PackageImports</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.18</dt><dd> Allow imports to be qualified by the package
+ name the module is intended to be imported from, e.g.
+</dd></dl><pre> import &quot;network&quot; Network.Socket
+</pre></td></tr><tr><td class="src"><a name="v:ImpredicativeTypes" class="def">ImpredicativeTypes</a></td><td class="doc"><dl><dt>GHC &#167; 7.8.6</dt><dd> Deprecated in GHC 6.12 and will be removed in
+ GHC 7.  Allow a type variable to be instantiated at a
+ polymorphic type.
+</dd></dl></td></tr><tr><td class="src"><a name="v:NewQualifiedOperators" class="def">NewQualifiedOperators</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.3</dt><dd> Change the syntax for qualified infix
+ operators.
+</dd></dl></td></tr><tr><td class="src"><a name="v:PostfixOperators" class="def">PostfixOperators</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.12</dt><dd> Relax the interpretation of left operator
+ sections to allow unary postfix operators.
+</dd></dl></td></tr><tr><td class="src"><a name="v:QuasiQuotes" class="def">QuasiQuotes</a></td><td class="doc"><dl><dt>GHC &#167; 7.9.5</dt><dd> Enable quasi-quotation, a mechanism for defining
+ new concrete syntax for expressions and patterns.
+</dd></dl></td></tr><tr><td class="src"><a name="v:TransformListComp" class="def">TransformListComp</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.10</dt><dd> Enable generalized list comprehensions,
+ supporting operations such as sorting and grouping.
+</dd></dl></td></tr><tr><td class="src"><a name="v:ViewPatterns" class="def">ViewPatterns</a></td><td class="doc"><dl><dt>GHC &#167; 7.3.6</dt><dd> Enable view patterns, which match a value by
+ applying a function and matching on the result.
+</dd></dl></td></tr><tr><td class="src"><a name="v:XmlSyntax" class="def">XmlSyntax</a></td><td class="doc"><p>Allow concrete XML syntax to be used in expressions and patterns,
+ as per the Haskell Server Pages extension language:
+ <a href="http://www.haskell.org/haskellwiki/HSP">http://www.haskell.org/haskellwiki/HSP</a>. The ideas behind it are
+ discussed in the paper &quot;Haskell Server Pages through Dynamic Loading&quot;
+ by Niklas Broberg, from Haskell Workshop '05.
+</p></td></tr><tr><td class="src"><a name="v:RegularPatterns" class="def">RegularPatterns</a></td><td class="doc"><p>Allow regular pattern matching over lists, as discussed in the
+ paper &quot;Regular Expression Patterns&quot; by Niklas Broberg, Andreas Farre
+ and Josef Svenningsson, from ICFP '04.
+</p></td></tr><tr><td class="src"><a name="v:TupleSections" class="def">TupleSections</a></td><td class="doc"><p>Enables the use of tuple sections, e.g. <code>(, True)</code> desugars into
+ <code>x -&gt; (x, True)</code>.
+</p></td></tr><tr><td class="src"><a name="v:GHCForeignImportPrim" class="def">GHCForeignImportPrim</a></td><td class="doc"><p>Allows GHC primops, written in C--, to be imported into a Haskell
+ file.
+</p></td></tr><tr><td class="src"><a name="v:NPlusKPatterns" class="def">NPlusKPatterns</a></td><td class="doc"><p>Support for patterns of the form <code>n + k</code>, where <code>k</code> is an
+ integer literal.
+</p></td></tr><tr><td class="src"><a name="v:DoAndIfThenElse" class="def">DoAndIfThenElse</a></td><td class="doc"><p>Improve the layout rule when <code>if</code> expressions are used in a <code>do</code>
+ block.
+</p></td></tr><tr><td class="src"><a name="v:RebindableSyntax" class="def">RebindableSyntax</a></td><td class="doc"><p>Makes much of the Haskell sugar be desugared into calls to the
+ function with a particular name that is in scope.
+</p></td></tr><tr><td class="src"><a name="v:ExplicitForAll" class="def">ExplicitForAll</a></td><td class="doc"><p>Make <code>forall</code> a keyword in types, which can be used to give the
+ generalisation explicitly.
+</p></td></tr><tr><td class="src"><a name="v:DatatypeContexts" class="def">DatatypeContexts</a></td><td class="doc"><p>Allow contexts to be put on datatypes, e.g. the <code>Eq a</code> in
+ <code>data Eq a =&gt; Set a = NilSet | ConsSet a (Set a)</code>.
+</p></td></tr><tr><td class="src"><a name="v:MonoLocalBinds" class="def">MonoLocalBinds</a></td><td class="doc"><p>Local (<code>let</code> and <code>where</code>) bindings are monomorphic.
+</p></td></tr><tr><td class="src"><a name="v:DeriveFunctor" class="def">DeriveFunctor</a></td><td class="doc"><p>Enable <code>deriving</code> for the <code>Data.Functor.Functor</code> class.
+</p></td></tr><tr><td class="src"><a name="v:DeriveTraversable" class="def">DeriveTraversable</a></td><td class="doc"><p>Enable <code>deriving</code> for the <code>Data.Traversable.Traversable</code> class.
+</p></td></tr><tr><td class="src"><a name="v:DeriveFoldable" class="def">DeriveFoldable</a></td><td class="doc"><p>Enable <code>deriving</code> for the <code>Data.Foldable.Foldable</code> class.
+</p></td></tr><tr><td class="src"><a name="v:NondecreasingIndentation" class="def">NondecreasingIndentation</a></td><td class="doc"><p>Enable non-decreasing indentation for 'do' blocks.
+</p></td></tr><tr><td class="src"><a name="v:CApiFFI" class="def">CApiFFI</a></td><td class="doc"><dl><dt>GHC &#167; 8.1.5</dt><dd> Enable the <code>capi</code> calling convention in the
+ foreign function interface.
+</dd></dl></td></tr></table></div><div class="subs instances"><p id="control.i:KnownExtension" class="caption collapser" onclick="toggleSection('i:KnownExtension')">Instances</p><div id="section.i:KnownExtension" class="show"><table><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Prelude.html#t:Bounded">Bounded</a> <a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Prelude.html#t:Enum">Enum</a> <a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-Eq.html#t:Eq">Eq</a> <a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Text-Read.html#t:Read">Read</a> <a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a></td><td class="doc empty">&nbsp;</td></tr><tr><td class="src"><a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Text-Show.html#t:Show">Show</a> <a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a></td><td class="doc empty">&nbsp;</td></tr></table></div></div></div><div class="top"><p class="src"><a name="v:classifyExtension" class="def">classifyExtension</a> :: <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a> -&gt; <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a></p><div class="doc"><p>A clever version of read that returns an <code><a href="Language-Haskell-Exts-Extension.html#v:UnknownExtension">UnknownExtension</a></code>
+   if the string is not recognised.
+</p></div></div><div class="top"><p class="src"><a name="v:parseExtension" class="def">parseExtension</a> :: <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a> -&gt; <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a></p><div class="doc"><p>Parse an enabled or disabled extension; returns
+ <code><a href="Language-Haskell-Exts-Extension.html#v:UnknownExtension">UnknownExtension</a></code> if the parse fails.
+</p></div></div><div class="top"><p class="src"><a name="v:prettyExtension" class="def">prettyExtension</a> :: <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a> -&gt; <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-String.html#t:String">String</a></p><div class="doc"><p>Pretty print an extension. Disabled extensions are prefixed with
+ 'No'.
+</p></div></div><h1 id="g:3">Extension groups
+</h1><div class="top"><p class="src"><a name="v:ghcDefault" class="def">ghcDefault</a> :: [<a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>]</p></div><div class="top"><p class="src"><a name="v:glasgowExts" class="def">glasgowExts</a> :: [<a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>]</p><div class="doc"><p>The list of extensions enabled by
+   GHC's portmanteau -fglasgow-exts flag.
+</p></div></div><div class="top"><p class="src"><a name="v:knownExtensions" class="def">knownExtensions</a> :: [<a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>]</p><div class="doc"><p>List of all known extensions, all enabled.
+</p></div></div><div class="top"><p class="src"><a name="v:deprecatedExtensions" class="def">deprecatedExtensions</a> :: [(<a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>, <a href="http://hackage.haskell.org/packages/archive/base/4.6.0.1/doc/html/Data-Maybe.html#t:Maybe">Maybe</a> <a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>)]</p><div class="doc"><p>Extensions that have been deprecated, possibly paired with another
+ extension that replaces it.
+</p></div></div><h1 id="g:4">Semantics of extensions applied to languages
+</h1><div class="top"><p class="src"><a name="v:impliesExts" class="def">impliesExts</a> :: [<a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a>] -&gt; [<a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a>]</p><div class="doc"><p>Certain extensions imply other extensions, and this function
+   makes the implication explicit. This also handles deprecated
+   extensions, which imply their replacements.
+   The returned value is the transitive closure of implied
+   extensions.
+</p></div></div><div class="top"><p class="src"><a name="v:toExtensionList" class="def">toExtensionList</a> :: <a href="Language-Haskell-Exts-Extension.html#t:Language">Language</a> -&gt; [<a href="Language-Haskell-Exts-Extension.html#t:Extension">Extension</a>] -&gt; [<a href="Language-Haskell-Exts-Extension.html#t:KnownExtension">KnownExtension</a>]</p></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.13.2</p></div></body></html>
