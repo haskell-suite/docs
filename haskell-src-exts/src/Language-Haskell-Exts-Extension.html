@@ -102,7 +102,7 @@
 <a name="line-93"></a>
 <a name="line-94"></a>  <span class='hs-comment'>-- | An unknown language, identified by its name.</span>
 <a name="line-95"></a>  <span class='hs-keyglyph'>|</span> <span class='hs-conid'>UnknownLanguage</span> <span class='hs-conid'>String</span>
-<a name="line-96"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span> <span class='hs-conid'>Read</span><span class='hs-layout'>,</span> <span class='hs-conid'>Eq</span><span class='hs-layout'>)</span>
+<a name="line-96"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span> <span class='hs-conid'>Read</span><span class='hs-layout'>,</span> <span class='hs-conid'>Eq</span><span class='hs-layout'>,</span> <span class='hs-conid'>Ord</span><span class='hs-layout'>)</span>
 <a name="line-97"></a>
 <a name="line-98"></a><a name="knownLanguages"></a><span class='hs-definition'>knownLanguages</span> <span class='hs-keyglyph'>::</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Language</span><span class='hs-keyglyph'>]</span>
 <a name="line-99"></a><span class='hs-definition'>knownLanguages</span> <span class='hs-keyglyph'>=</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Haskell98</span><span class='hs-layout'>,</span> <span class='hs-conid'>Haskell2010</span><span class='hs-keyglyph'>]</span>
@@ -133,7 +133,7 @@
 <a name="line-124"></a>  <span class='hs-comment'>-- | An unknown extension, identified by the name of its @LANGUAGE@</span>
 <a name="line-125"></a>  <span class='hs-comment'>-- pragma.</span>
 <a name="line-126"></a>  <span class='hs-keyglyph'>|</span> <span class='hs-conid'>UnknownExtension</span> <span class='hs-conid'>String</span>
-<a name="line-127"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span> <span class='hs-conid'>Read</span><span class='hs-layout'>,</span> <span class='hs-conid'>Eq</span><span class='hs-layout'>)</span>
+<a name="line-127"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span> <span class='hs-conid'>Read</span><span class='hs-layout'>,</span> <span class='hs-conid'>Eq</span><span class='hs-layout'>,</span> <span class='hs-conid'>Ord</span><span class='hs-layout'>)</span>
 <a name="line-128"></a>
 <a name="line-129"></a>
 <a name="line-130"></a><a name="KnownExtension"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>KnownExtension</span> <span class='hs-keyglyph'>=</span>
@@ -490,7 +490,7 @@
 <a name="line-481"></a>
 <a name="line-482"></a>-}</span>
 <a name="line-483"></a>
-<a name="line-484"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span> <span class='hs-conid'>Read</span><span class='hs-layout'>,</span> <span class='hs-conid'>Eq</span><span class='hs-layout'>,</span> <span class='hs-conid'>Enum</span><span class='hs-layout'>,</span> <span class='hs-conid'>Bounded</span><span class='hs-layout'>)</span>
+<a name="line-484"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span> <span class='hs-conid'>Read</span><span class='hs-layout'>,</span> <span class='hs-conid'>Eq</span><span class='hs-layout'>,</span> <span class='hs-conid'>Ord</span><span class='hs-layout'>,</span> <span class='hs-conid'>Enum</span><span class='hs-layout'>,</span> <span class='hs-conid'>Bounded</span><span class='hs-layout'>)</span>
 <a name="line-485"></a>
 <a name="line-486"></a><a name="impliesExts"></a><span class='hs-comment'>-- | Certain extensions imply other extensions, and this function</span>
 <a name="line-487"></a><span class='hs-comment'>--   makes the implication explicit. This also handles deprecated</span>
