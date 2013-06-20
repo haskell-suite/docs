@@ -63,7 +63,7 @@
 <a name="line-54"></a>        <span class='hs-comment'>-- FIXME currently we don't have a way to signal an error when</span>
 <a name="line-55"></a>        <span class='hs-comment'>-- Prelude cannot be found</span>
 <a name="line-56"></a>        <span class='hs-varid'>syms</span> <span class='hs-keyglyph'>&lt;-</span> <span class='hs-varid'>fold</span> <span class='hs-varop'>`liftM`</span> <span class='hs-varid'>getModuleInfo</span> <span class='hs-varid'>preludeName</span>
-<a name="line-57"></a>        <span class='hs-varid'>return</span> <span class='hs-varop'>$</span>
+<a name="line-57"></a>        <span class='hs-varid'>return</span> <span class='hs-varop'>$</span> <span class='hs-varid'>tbl</span> <span class='hs-varop'>&lt;&gt;</span>
 <a name="line-58"></a>          <span class='hs-varid'>computeSymbolTable</span>
 <a name="line-59"></a>            <span class='hs-conid'>False</span> <span class='hs-comment'>-- not qualified</span>
 <a name="line-60"></a>            <span class='hs-layout'>(</span><span class='hs-conid'>ModuleName</span> <span class='hs-conid'>()</span> <span class='hs-varid'>preludeName</span><span class='hs-layout'>)</span>
@@ -190,7 +190,7 @@
 <a name="line-181"></a>              <span class='hs-keyword'>then</span>
 <a name="line-182"></a>                <span class='hs-varid'>scopeError</span> <span class='hs-layout'>(</span><span class='hs-conid'>ENotExported</span> <span class='hs-conid'>Nothing</span> <span class='hs-varid'>n</span> <span class='hs-varid'>mod</span><span class='hs-layout'>)</span> <span class='hs-varid'>spec</span>
 <a name="line-183"></a>              <span class='hs-keyword'>else</span>
-<a name="line-184"></a>                <span class='hs-conid'>Scoped</span> <span class='hs-layout'>(</span><span class='hs-conid'>Export</span> <span class='hs-layout'>(</span><span class='hs-conid'>Symbols</span> <span class='hs-varid'>vlMatches</span> <span class='hs-varid'>tyMatches</span><span class='hs-layout'>)</span><span class='hs-layout'>)</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>spec</span>
+<a name="line-184"></a>                <span class='hs-conid'>Scoped</span> <span class='hs-layout'>(</span><span class='hs-conid'>ImportPart</span> <span class='hs-layout'>(</span><span class='hs-conid'>Symbols</span> <span class='hs-varid'>vlMatches</span> <span class='hs-varid'>tyMatches</span><span class='hs-layout'>)</span><span class='hs-layout'>)</span> <span class='hs-varop'>&lt;$&gt;</span> <span class='hs-varid'>spec</span>
 <a name="line-185"></a>      <span class='hs-keyglyph'>|</span> <span class='hs-varid'>otherwise</span> <span class='hs-keyglyph'>-&gt;</span>
 <a name="line-186"></a>          <span class='hs-keyword'>let</span>
 <a name="line-187"></a>            <span class='hs-varid'>matches</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>mconcat</span>
