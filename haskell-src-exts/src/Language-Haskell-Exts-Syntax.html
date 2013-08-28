@@ -715,312 +715,313 @@
 <a name="line-706"></a><a name="Safety"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Safety</span>
 <a name="line-707"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>PlayRisky</span>         <span class='hs-comment'>-- ^ unsafe</span>
 <a name="line-708"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PlaySafe</span> <span class='hs-conid'>Bool</span>     <span class='hs-comment'>-- ^ safe ('False') or threadsafe ('True')</span>
-<a name="line-709"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-710"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-711"></a><span class='hs-cpp'>#else</span>
-<a name="line-712"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-713"></a><span class='hs-cpp'>#endif</span>
-<a name="line-714"></a>
-<a name="line-715"></a><a name="CallConv"></a><span class='hs-comment'>-- | The calling convention of a foreign function call.</span>
-<a name="line-716"></a><a name="CallConv"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>CallConv</span>
-<a name="line-717"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>StdCall</span>
-<a name="line-718"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>CCall</span>
-<a name="line-719"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>CPlusPlus</span>
-<a name="line-720"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>DotNet</span>
-<a name="line-721"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>Jvm</span>
-<a name="line-722"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>Js</span>
-<a name="line-723"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>CApi</span>
-<a name="line-724"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-725"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-726"></a><span class='hs-cpp'>#else</span>
-<a name="line-727"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-728"></a><span class='hs-cpp'>#endif</span>
-<a name="line-729"></a>
-<a name="line-730"></a><a name="ModulePragma"></a><span class='hs-comment'>-- | A top level options pragma, preceding the module header.</span>
-<a name="line-731"></a><a name="ModulePragma"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>ModulePragma</span>
-<a name="line-732"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>LanguagePragma</span>   <span class='hs-conid'>SrcLoc</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Name</span><span class='hs-keyglyph'>]</span>    <span class='hs-comment'>-- ^ LANGUAGE pragma</span>
-<a name="line-733"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>OptionsPragma</span>    <span class='hs-conid'>SrcLoc</span> <span class='hs-layout'>(</span><span class='hs-conid'>Maybe</span> <span class='hs-conid'>Tool</span><span class='hs-layout'>)</span> <span class='hs-conid'>String</span>
-<a name="line-734"></a>                        <span class='hs-comment'>-- ^ OPTIONS pragma, possibly qualified with a tool, e.g. OPTIONS_GHC</span>
-<a name="line-735"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>AnnModulePragma</span>  <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>Annotation</span>
-<a name="line-736"></a>                        <span class='hs-comment'>-- ^ ANN pragma with module scope</span>
-<a name="line-737"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-738"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-739"></a><span class='hs-cpp'>#else</span>
-<a name="line-740"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-741"></a><span class='hs-cpp'>#endif</span>
-<a name="line-742"></a>
-<a name="line-743"></a><a name="Activation"></a><span class='hs-comment'>-- | Activation clause of a RULES pragma.</span>
-<a name="line-744"></a><a name="Activation"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Activation</span>
-<a name="line-745"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>AlwaysActive</span>
-<a name="line-746"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>ActiveFrom</span>  <span class='hs-conid'>Int</span>
-<a name="line-747"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>ActiveUntil</span> <span class='hs-conid'>Int</span>
-<a name="line-748"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-749"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-750"></a><span class='hs-cpp'>#else</span>
-<a name="line-751"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-752"></a><span class='hs-cpp'>#endif</span>
-<a name="line-753"></a>
-<a name="line-754"></a><a name="Rule"></a><span class='hs-comment'>-- | The body of a RULES pragma.</span>
-<a name="line-755"></a><a name="Rule"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Rule</span>
-<a name="line-756"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Rule</span> <span class='hs-conid'>String</span> <span class='hs-conid'>Activation</span> <span class='hs-layout'>(</span><span class='hs-conid'>Maybe</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>RuleVar</span><span class='hs-keyglyph'>]</span><span class='hs-layout'>)</span> <span class='hs-conid'>Exp</span> <span class='hs-conid'>Exp</span>
-<a name="line-757"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-758"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-759"></a><span class='hs-cpp'>#else</span>
-<a name="line-760"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-761"></a><span class='hs-cpp'>#endif</span>
-<a name="line-762"></a>
-<a name="line-763"></a><a name="RuleVar"></a><span class='hs-comment'>-- | Variables used in a RULES pragma, optionally annotated with types</span>
-<a name="line-764"></a><a name="RuleVar"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>RuleVar</span>
-<a name="line-765"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>RuleVar</span> <span class='hs-conid'>Name</span>
-<a name="line-766"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>TypedRuleVar</span> <span class='hs-conid'>Name</span> <span class='hs-conid'>Type</span>
-<a name="line-767"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-768"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-769"></a><span class='hs-cpp'>#else</span>
-<a name="line-770"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-771"></a><span class='hs-cpp'>#endif</span>
-<a name="line-772"></a>
-<a name="line-773"></a><a name="WarningText"></a><span class='hs-comment'>-- | Warning text to optionally use in the module header of e.g.</span>
-<a name="line-774"></a><a name="WarningText"></a><span class='hs-comment'>--   a deprecated module.</span>
-<a name="line-775"></a><a name="WarningText"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>WarningText</span>
-<a name="line-776"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>DeprText</span> <span class='hs-conid'>String</span>
-<a name="line-777"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>WarnText</span> <span class='hs-conid'>String</span>
-<a name="line-778"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-779"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-780"></a><span class='hs-cpp'>#else</span>
-<a name="line-781"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-782"></a><span class='hs-cpp'>#endif</span>
-<a name="line-783"></a>
+<a name="line-709"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PlayInterruptible</span> <span class='hs-comment'>-- ^ interruptible</span>
+<a name="line-710"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-711"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-712"></a><span class='hs-cpp'>#else</span>
+<a name="line-713"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-714"></a><span class='hs-cpp'>#endif</span>
+<a name="line-715"></a>
+<a name="line-716"></a><a name="CallConv"></a><span class='hs-comment'>-- | The calling convention of a foreign function call.</span>
+<a name="line-717"></a><a name="CallConv"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>CallConv</span>
+<a name="line-718"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>StdCall</span>
+<a name="line-719"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>CCall</span>
+<a name="line-720"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>CPlusPlus</span>
+<a name="line-721"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>DotNet</span>
+<a name="line-722"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>Jvm</span>
+<a name="line-723"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>Js</span>
+<a name="line-724"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>CApi</span>
+<a name="line-725"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-726"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-727"></a><span class='hs-cpp'>#else</span>
+<a name="line-728"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-729"></a><span class='hs-cpp'>#endif</span>
+<a name="line-730"></a>
+<a name="line-731"></a><a name="ModulePragma"></a><span class='hs-comment'>-- | A top level options pragma, preceding the module header.</span>
+<a name="line-732"></a><a name="ModulePragma"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>ModulePragma</span>
+<a name="line-733"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>LanguagePragma</span>   <span class='hs-conid'>SrcLoc</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Name</span><span class='hs-keyglyph'>]</span>    <span class='hs-comment'>-- ^ LANGUAGE pragma</span>
+<a name="line-734"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>OptionsPragma</span>    <span class='hs-conid'>SrcLoc</span> <span class='hs-layout'>(</span><span class='hs-conid'>Maybe</span> <span class='hs-conid'>Tool</span><span class='hs-layout'>)</span> <span class='hs-conid'>String</span>
+<a name="line-735"></a>                        <span class='hs-comment'>-- ^ OPTIONS pragma, possibly qualified with a tool, e.g. OPTIONS_GHC</span>
+<a name="line-736"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>AnnModulePragma</span>  <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>Annotation</span>
+<a name="line-737"></a>                        <span class='hs-comment'>-- ^ ANN pragma with module scope</span>
+<a name="line-738"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-739"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-740"></a><span class='hs-cpp'>#else</span>
+<a name="line-741"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-742"></a><span class='hs-cpp'>#endif</span>
+<a name="line-743"></a>
+<a name="line-744"></a><a name="Activation"></a><span class='hs-comment'>-- | Activation clause of a RULES pragma.</span>
+<a name="line-745"></a><a name="Activation"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Activation</span>
+<a name="line-746"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>AlwaysActive</span>
+<a name="line-747"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>ActiveFrom</span>  <span class='hs-conid'>Int</span>
+<a name="line-748"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>ActiveUntil</span> <span class='hs-conid'>Int</span>
+<a name="line-749"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-750"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-751"></a><span class='hs-cpp'>#else</span>
+<a name="line-752"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-753"></a><span class='hs-cpp'>#endif</span>
+<a name="line-754"></a>
+<a name="line-755"></a><a name="Rule"></a><span class='hs-comment'>-- | The body of a RULES pragma.</span>
+<a name="line-756"></a><a name="Rule"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Rule</span>
+<a name="line-757"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Rule</span> <span class='hs-conid'>String</span> <span class='hs-conid'>Activation</span> <span class='hs-layout'>(</span><span class='hs-conid'>Maybe</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>RuleVar</span><span class='hs-keyglyph'>]</span><span class='hs-layout'>)</span> <span class='hs-conid'>Exp</span> <span class='hs-conid'>Exp</span>
+<a name="line-758"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-759"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-760"></a><span class='hs-cpp'>#else</span>
+<a name="line-761"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-762"></a><span class='hs-cpp'>#endif</span>
+<a name="line-763"></a>
+<a name="line-764"></a><a name="RuleVar"></a><span class='hs-comment'>-- | Variables used in a RULES pragma, optionally annotated with types</span>
+<a name="line-765"></a><a name="RuleVar"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>RuleVar</span>
+<a name="line-766"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>RuleVar</span> <span class='hs-conid'>Name</span>
+<a name="line-767"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>TypedRuleVar</span> <span class='hs-conid'>Name</span> <span class='hs-conid'>Type</span>
+<a name="line-768"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-769"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-770"></a><span class='hs-cpp'>#else</span>
+<a name="line-771"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-772"></a><span class='hs-cpp'>#endif</span>
+<a name="line-773"></a>
+<a name="line-774"></a><a name="WarningText"></a><span class='hs-comment'>-- | Warning text to optionally use in the module header of e.g.</span>
+<a name="line-775"></a><a name="WarningText"></a><span class='hs-comment'>--   a deprecated module.</span>
+<a name="line-776"></a><a name="WarningText"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>WarningText</span>
+<a name="line-777"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>DeprText</span> <span class='hs-conid'>String</span>
+<a name="line-778"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>WarnText</span> <span class='hs-conid'>String</span>
+<a name="line-779"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-780"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-781"></a><span class='hs-cpp'>#else</span>
+<a name="line-782"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-783"></a><span class='hs-cpp'>#endif</span>
 <a name="line-784"></a>
-<a name="line-785"></a><a name="Pat"></a><span class='hs-comment'>-- | A pattern, to be matched against a value.</span>
-<a name="line-786"></a><a name="Pat"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Pat</span>
-<a name="line-787"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>PVar</span> <span class='hs-conid'>Name</span>                     <span class='hs-comment'>-- ^ variable</span>
-<a name="line-788"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PLit</span> <span class='hs-conid'>Literal</span>                  <span class='hs-comment'>-- ^ literal constant</span>
-<a name="line-789"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PNeg</span> <span class='hs-conid'>Pat</span>                      <span class='hs-comment'>-- ^ negated pattern</span>
-<a name="line-790"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PNPlusK</span> <span class='hs-conid'>Name</span> <span class='hs-conid'>Integer</span>          <span class='hs-comment'>-- ^ n+k pattern</span>
-<a name="line-791"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PInfixApp</span> <span class='hs-conid'>Pat</span> <span class='hs-conid'>QName</span> <span class='hs-conid'>Pat</span>       <span class='hs-comment'>-- ^ pattern with an infix data constructor</span>
-<a name="line-792"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PApp</span> <span class='hs-conid'>QName</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Pat</span><span class='hs-keyglyph'>]</span>              <span class='hs-comment'>-- ^ data constructor and argument patterns</span>
-<a name="line-793"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PTuple</span> <span class='hs-conid'>Boxed</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Pat</span><span class='hs-keyglyph'>]</span>            <span class='hs-comment'>-- ^ tuple pattern</span>
-<a name="line-794"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PList</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Pat</span><span class='hs-keyglyph'>]</span>                   <span class='hs-comment'>-- ^ list pattern</span>
-<a name="line-795"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PParen</span> <span class='hs-conid'>Pat</span>                    <span class='hs-comment'>-- ^ parenthesized pattern</span>
-<a name="line-796"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PRec</span> <span class='hs-conid'>QName</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>PatField</span><span class='hs-keyglyph'>]</span>         <span class='hs-comment'>-- ^ labelled pattern, record style</span>
-<a name="line-797"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PAsPat</span> <span class='hs-conid'>Name</span> <span class='hs-conid'>Pat</span>               <span class='hs-comment'>-- ^ @\@@-pattern</span>
-<a name="line-798"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PWildCard</span>                     <span class='hs-comment'>-- ^ wildcard pattern: @_@</span>
-<a name="line-799"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PIrrPat</span> <span class='hs-conid'>Pat</span>                   <span class='hs-comment'>-- ^ irrefutable pattern: @~/pat/@</span>
-<a name="line-800"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PatTypeSig</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>Pat</span> <span class='hs-conid'>Type</span>    <span class='hs-comment'>-- ^ pattern with type signature</span>
-<a name="line-801"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PViewPat</span> <span class='hs-conid'>Exp</span> <span class='hs-conid'>Pat</span>              <span class='hs-comment'>-- ^ view patterns of the form @(/exp/ -&gt; /pat/)@</span>
-<a name="line-802"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PRPat</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>RPat</span><span class='hs-keyglyph'>]</span>                  <span class='hs-comment'>-- ^ regular list pattern</span>
-<a name="line-803"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PXTag</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>XName</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>PXAttr</span><span class='hs-keyglyph'>]</span> <span class='hs-layout'>(</span><span class='hs-conid'>Maybe</span> <span class='hs-conid'>Pat</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Pat</span><span class='hs-keyglyph'>]</span>
-<a name="line-804"></a>                                    <span class='hs-comment'>-- ^ XML element pattern</span>
-<a name="line-805"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PXETag</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>XName</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>PXAttr</span><span class='hs-keyglyph'>]</span> <span class='hs-layout'>(</span><span class='hs-conid'>Maybe</span> <span class='hs-conid'>Pat</span><span class='hs-layout'>)</span>
-<a name="line-806"></a>                                    <span class='hs-comment'>-- ^ XML singleton element pattern</span>
-<a name="line-807"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PXPcdata</span> <span class='hs-conid'>String</span>               <span class='hs-comment'>-- ^ XML PCDATA pattern</span>
-<a name="line-808"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PXPatTag</span> <span class='hs-conid'>Pat</span>                  <span class='hs-comment'>-- ^ XML embedded pattern</span>
-<a name="line-809"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PXRPats</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>RPat</span><span class='hs-keyglyph'>]</span>                <span class='hs-comment'>-- ^ XML regular list pattern</span>
-<a name="line-810"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PExplTypeArg</span> <span class='hs-conid'>QName</span> <span class='hs-conid'>Type</span>       <span class='hs-comment'>-- ^ Explicit generics style type argument e.g. @f {| Int |} x = ...@</span>
-<a name="line-811"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PQuasiQuote</span> <span class='hs-conid'>String</span> <span class='hs-conid'>String</span>     <span class='hs-comment'>-- ^ quasi quote patter: @[$/name/| /string/ |]@</span>
-<a name="line-812"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PBangPat</span> <span class='hs-conid'>Pat</span>                  <span class='hs-comment'>-- ^ strict (bang) pattern: @f !x = ...@</span>
-<a name="line-813"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-814"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-815"></a><span class='hs-cpp'>#else</span>
-<a name="line-816"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-817"></a><span class='hs-cpp'>#endif</span>
-<a name="line-818"></a>
-<a name="line-819"></a><a name="PXAttr"></a><span class='hs-comment'>-- | An XML attribute in a pattern.</span>
-<a name="line-820"></a><a name="PXAttr"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>PXAttr</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>PXAttr</span> <span class='hs-conid'>XName</span> <span class='hs-conid'>Pat</span>
-<a name="line-821"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-822"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-823"></a><span class='hs-cpp'>#else</span>
-<a name="line-824"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-825"></a><span class='hs-cpp'>#endif</span>
-<a name="line-826"></a>
-<a name="line-827"></a><a name="RPatOp"></a><span class='hs-comment'>-- | A regular pattern operator.</span>
-<a name="line-828"></a><a name="RPatOp"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>RPatOp</span>
-<a name="line-829"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>RPStar</span>    <span class='hs-comment'>-- ^ @*@ = 0 or more</span>
-<a name="line-830"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPStarG</span>   <span class='hs-comment'>-- ^ @*!@ = 0 or more, greedy</span>
-<a name="line-831"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPPlus</span>    <span class='hs-comment'>-- ^ @+@ = 1 or more</span>
-<a name="line-832"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPPlusG</span>   <span class='hs-comment'>-- ^ @+!@ = 1 or more, greedy</span>
-<a name="line-833"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPOpt</span>     <span class='hs-comment'>-- ^ @?@ = 0 or 1</span>
-<a name="line-834"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPOptG</span>    <span class='hs-comment'>-- ^ @?!@ = 0 or 1, greedy</span>
-<a name="line-835"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-836"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-837"></a><span class='hs-cpp'>#else</span>
-<a name="line-838"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-839"></a><span class='hs-cpp'>#endif</span>
-<a name="line-840"></a>
-<a name="line-841"></a><a name="RPat"></a><span class='hs-comment'>-- | An entity in a regular pattern.</span>
-<a name="line-842"></a><a name="RPat"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>RPat</span>
-<a name="line-843"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>RPOp</span> <span class='hs-conid'>RPat</span> <span class='hs-conid'>RPatOp</span>      <span class='hs-comment'>-- ^ operator pattern, e.g. pat*</span>
-<a name="line-844"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPEither</span> <span class='hs-conid'>RPat</span> <span class='hs-conid'>RPat</span>    <span class='hs-comment'>-- ^ choice pattern, e.g. (1 | 2)</span>
-<a name="line-845"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPSeq</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>RPat</span><span class='hs-keyglyph'>]</span>          <span class='hs-comment'>-- ^ sequence pattern, e.g. (| 1, 2, 3 |)</span>
-<a name="line-846"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPGuard</span> <span class='hs-conid'>Pat</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Stmt</span><span class='hs-keyglyph'>]</span>    <span class='hs-comment'>-- ^ guarded pattern, e.g. (| p | p &lt; 3 |)</span>
-<a name="line-847"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPCAs</span> <span class='hs-conid'>Name</span> <span class='hs-conid'>RPat</span>       <span class='hs-comment'>-- ^ non-linear variable binding, e.g. (foo\@:(1 | 2))*</span>
-<a name="line-848"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPAs</span> <span class='hs-conid'>Name</span> <span class='hs-conid'>RPat</span>        <span class='hs-comment'>-- ^ linear variable binding, e.g. foo\@(1 | 2)</span>
-<a name="line-849"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPParen</span> <span class='hs-conid'>RPat</span>          <span class='hs-comment'>-- ^ parenthesised pattern, e.g. (2*)</span>
-<a name="line-850"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPPat</span> <span class='hs-conid'>Pat</span>             <span class='hs-comment'>-- ^ an ordinary pattern</span>
-<a name="line-851"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-852"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-853"></a><span class='hs-cpp'>#else</span>
-<a name="line-854"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-855"></a><span class='hs-cpp'>#endif</span>
-<a name="line-856"></a>
-<a name="line-857"></a><a name="PatField"></a><span class='hs-comment'>-- | An /fpat/ in a labeled record pattern.</span>
-<a name="line-858"></a><a name="PatField"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>PatField</span>
-<a name="line-859"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>PFieldPat</span> <span class='hs-conid'>QName</span> <span class='hs-conid'>Pat</span>       <span class='hs-comment'>-- ^ ordinary label-pattern pair</span>
-<a name="line-860"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PFieldPun</span> <span class='hs-conid'>Name</span>            <span class='hs-comment'>-- ^ record field pun</span>
-<a name="line-861"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PFieldWildcard</span>            <span class='hs-comment'>-- ^ record field wildcard</span>
-<a name="line-862"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-863"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-864"></a><span class='hs-cpp'>#else</span>
-<a name="line-865"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-866"></a><span class='hs-cpp'>#endif</span>
-<a name="line-867"></a>
-<a name="line-868"></a><a name="Stmt"></a><span class='hs-comment'>-- | A statement, representing both a /stmt/ in a @do@-expression,</span>
-<a name="line-869"></a><a name="Stmt"></a><span class='hs-comment'>--   an ordinary /qual/ in a list comprehension, as well as a /stmt/</span>
-<a name="line-870"></a><a name="Stmt"></a><span class='hs-comment'>--   in a pattern guard.</span>
-<a name="line-871"></a><a name="Stmt"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Stmt</span>
-<a name="line-872"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Generator</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>Pat</span> <span class='hs-conid'>Exp</span>
-<a name="line-873"></a>                        <span class='hs-comment'>-- ^ a generator: /pat/ @&lt;-@ /exp/</span>
-<a name="line-874"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>Qualifier</span> <span class='hs-conid'>Exp</span>     <span class='hs-comment'>-- ^ an /exp/ by itself: in a @do@-expression,</span>
-<a name="line-875"></a>                        <span class='hs-comment'>--   an action whose result is discarded;</span>
-<a name="line-876"></a>                        <span class='hs-comment'>--   in a list comprehension and pattern guard,</span>
-<a name="line-877"></a>                        <span class='hs-comment'>--   a guard expression</span>
-<a name="line-878"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>LetStmt</span> <span class='hs-conid'>Binds</span>     <span class='hs-comment'>-- ^ local bindings</span>
-<a name="line-879"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RecStmt</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Stmt</span><span class='hs-keyglyph'>]</span>    <span class='hs-comment'>-- ^ a recursive binding group for arrows</span>
-<a name="line-880"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-881"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-882"></a><span class='hs-cpp'>#else</span>
-<a name="line-883"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-884"></a><span class='hs-cpp'>#endif</span>
-<a name="line-885"></a>
-<a name="line-886"></a><a name="QualStmt"></a><span class='hs-comment'>-- | A general /transqual/ in a list comprehension,</span>
-<a name="line-887"></a><a name="QualStmt"></a><span class='hs-comment'>--   which could potentially be a transform of the kind</span>
-<a name="line-888"></a><a name="QualStmt"></a><span class='hs-comment'>--   enabled by TransformListComp.</span>
-<a name="line-889"></a><a name="QualStmt"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>QualStmt</span>
-<a name="line-890"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>QualStmt</span>     <span class='hs-conid'>Stmt</span>         <span class='hs-comment'>-- ^ an ordinary statement</span>
-<a name="line-891"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>ThenTrans</span>    <span class='hs-conid'>Exp</span>          <span class='hs-comment'>-- ^ @then@ /exp/</span>
-<a name="line-892"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>ThenBy</span>       <span class='hs-conid'>Exp</span> <span class='hs-conid'>Exp</span>      <span class='hs-comment'>-- ^ @then@ /exp/ @by@ /exp/</span>
-<a name="line-893"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>GroupBy</span>      <span class='hs-conid'>Exp</span>          <span class='hs-comment'>-- ^ @then@ @group@ @by@ /exp/</span>
-<a name="line-894"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>GroupUsing</span>   <span class='hs-conid'>Exp</span>          <span class='hs-comment'>-- ^ @then@ @group@ @using@ /exp/</span>
-<a name="line-895"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>GroupByUsing</span> <span class='hs-conid'>Exp</span> <span class='hs-conid'>Exp</span>      <span class='hs-comment'>-- ^ @then@ @group@ @by@ /exp/ @using@ /exp/</span>
-<a name="line-896"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-897"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-898"></a><span class='hs-cpp'>#else</span>
-<a name="line-899"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-900"></a><span class='hs-cpp'>#endif</span>
-<a name="line-901"></a>
-<a name="line-902"></a><a name="FieldUpdate"></a><span class='hs-comment'>-- | An /fbind/ in a labeled construction or update expression.</span>
-<a name="line-903"></a><a name="FieldUpdate"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>FieldUpdate</span>
-<a name="line-904"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>FieldUpdate</span> <span class='hs-conid'>QName</span> <span class='hs-conid'>Exp</span>     <span class='hs-comment'>-- ^ ordinary label-expresion pair</span>
-<a name="line-905"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>FieldPun</span> <span class='hs-conid'>Name</span>             <span class='hs-comment'>-- ^ record field pun</span>
-<a name="line-906"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>FieldWildcard</span>             <span class='hs-comment'>-- ^ record field wildcard</span>
-<a name="line-907"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-908"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-909"></a><span class='hs-cpp'>#else</span>
-<a name="line-910"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-911"></a><span class='hs-cpp'>#endif</span>
-<a name="line-912"></a>
-<a name="line-913"></a><a name="Alt"></a><span class='hs-comment'>-- | An /alt/ alternative in a @case@ expression.</span>
-<a name="line-914"></a><a name="Alt"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Alt</span>
-<a name="line-915"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Alt</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>Pat</span> <span class='hs-conid'>GuardedAlts</span> <span class='hs-conid'>Binds</span>
-<a name="line-916"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-917"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-918"></a><span class='hs-cpp'>#else</span>
-<a name="line-919"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-920"></a><span class='hs-cpp'>#endif</span>
-<a name="line-921"></a>
-<a name="line-922"></a><a name="GuardedAlts"></a><span class='hs-comment'>-- | The right-hand sides of a @case@ alternative,</span>
-<a name="line-923"></a><a name="GuardedAlts"></a><span class='hs-comment'>--   which may be a single right-hand side or a</span>
-<a name="line-924"></a><a name="GuardedAlts"></a><span class='hs-comment'>--   set of guarded ones.</span>
-<a name="line-925"></a><a name="GuardedAlts"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>GuardedAlts</span>
-<a name="line-926"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>UnGuardedAlt</span> <span class='hs-conid'>Exp</span>          <span class='hs-comment'>-- ^ @-&gt;@ /exp/</span>
-<a name="line-927"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>GuardedAlts</span>  <span class='hs-keyglyph'>[</span><span class='hs-conid'>GuardedAlt</span><span class='hs-keyglyph'>]</span> <span class='hs-comment'>-- ^ /gdpat/</span>
-<a name="line-928"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-929"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-930"></a><span class='hs-cpp'>#else</span>
-<a name="line-931"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-932"></a><span class='hs-cpp'>#endif</span>
-<a name="line-933"></a>
-<a name="line-934"></a><a name="GuardedAlt"></a><span class='hs-comment'>-- | A guarded case alternative @|@ /stmts/ @-&gt;@ /exp/.</span>
-<a name="line-935"></a><a name="GuardedAlt"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>GuardedAlt</span>
-<a name="line-936"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>GuardedAlt</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Stmt</span><span class='hs-keyglyph'>]</span> <span class='hs-conid'>Exp</span>
-<a name="line-937"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
-<a name="line-938"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
-<a name="line-939"></a><span class='hs-cpp'>#else</span>
-<a name="line-940"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
-<a name="line-941"></a><span class='hs-cpp'>#endif</span>
-<a name="line-942"></a>
-<a name="line-943"></a><span class='hs-comment'>-----------------------------------------------------------------------------</span>
-<a name="line-944"></a><span class='hs-comment'>-- Builtin names.</span>
-<a name="line-945"></a>
-<a name="line-946"></a><a name="prelude_mod"></a><span class='hs-definition'>prelude_mod</span><span class='hs-layout'>,</span> <span class='hs-varid'>main_mod</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>ModuleName</span>
-<a name="line-947"></a><span class='hs-definition'>prelude_mod</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>ModuleName</span> <span class='hs-str'>"Prelude"</span>
-<a name="line-948"></a><a name="main_mod"></a><span class='hs-definition'>main_mod</span>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>ModuleName</span> <span class='hs-str'>"Main"</span>
-<a name="line-949"></a>
-<a name="line-950"></a><a name="main_name"></a><span class='hs-definition'>main_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Name</span>
-<a name="line-951"></a><span class='hs-definition'>main_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"main"</span>
-<a name="line-952"></a>
-<a name="line-953"></a><a name="unit_con_name"></a><span class='hs-definition'>unit_con_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>QName</span>
-<a name="line-954"></a><span class='hs-definition'>unit_con_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>UnitCon</span>
-<a name="line-955"></a>
-<a name="line-956"></a><a name="tuple_con_name"></a><span class='hs-definition'>tuple_con_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Boxed</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>QName</span>
-<a name="line-957"></a><span class='hs-definition'>tuple_con_name</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-layout'>(</span><span class='hs-conid'>TupleCon</span> <span class='hs-varid'>b</span> <span class='hs-layout'>(</span><span class='hs-varid'>i</span><span class='hs-varop'>+</span><span class='hs-num'>1</span><span class='hs-layout'>)</span><span class='hs-layout'>)</span>
-<a name="line-958"></a>
-<a name="line-959"></a><a name="list_cons_name"></a><span class='hs-definition'>list_cons_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>QName</span>
-<a name="line-960"></a><span class='hs-definition'>list_cons_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>Cons</span>
-<a name="line-961"></a>
-<a name="line-962"></a><a name="unboxed_singleton_con_name"></a><span class='hs-definition'>unboxed_singleton_con_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>QName</span>
-<a name="line-963"></a><span class='hs-definition'>unboxed_singleton_con_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>UnboxedSingleCon</span>
-<a name="line-964"></a>
-<a name="line-965"></a><a name="unit_con"></a><span class='hs-definition'>unit_con</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Exp</span>
-<a name="line-966"></a><span class='hs-definition'>unit_con</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Con</span> <span class='hs-varid'>unit_con_name</span>
-<a name="line-967"></a>
-<a name="line-968"></a><a name="tuple_con"></a><span class='hs-definition'>tuple_con</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Boxed</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Exp</span>
-<a name="line-969"></a><span class='hs-definition'>tuple_con</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Con</span> <span class='hs-layout'>(</span><span class='hs-varid'>tuple_con_name</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span><span class='hs-layout'>)</span>
-<a name="line-970"></a>
-<a name="line-971"></a><a name="unboxed_singleton_con"></a><span class='hs-definition'>unboxed_singleton_con</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Exp</span>
-<a name="line-972"></a><span class='hs-definition'>unboxed_singleton_con</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Con</span> <span class='hs-layout'>(</span><span class='hs-varid'>unboxed_singleton_con_name</span><span class='hs-layout'>)</span>
-<a name="line-973"></a>
-<a name="line-974"></a><a name="as_name"></a><span class='hs-definition'>as_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>qualified_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>hiding_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>minus_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>bang_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>dot_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>star_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Name</span>
-<a name="line-975"></a><span class='hs-definition'>as_name</span>        <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"as"</span>
-<a name="line-976"></a><a name="qualified_name"></a><span class='hs-definition'>qualified_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"qualified"</span>
-<a name="line-977"></a><a name="hiding_name"></a><span class='hs-definition'>hiding_name</span>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"hiding"</span>
-<a name="line-978"></a><a name="minus_name"></a><span class='hs-definition'>minus_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Symbol</span> <span class='hs-str'>"-"</span>
-<a name="line-979"></a><a name="bang_name"></a><span class='hs-definition'>bang_name</span>      <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Symbol</span> <span class='hs-str'>"!"</span>
-<a name="line-980"></a><a name="dot_name"></a><span class='hs-definition'>dot_name</span>       <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Symbol</span> <span class='hs-str'>"."</span>
-<a name="line-981"></a><a name="star_name"></a><span class='hs-definition'>star_name</span>      <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Symbol</span> <span class='hs-str'>"*"</span>
-<a name="line-982"></a>
-<a name="line-983"></a><a name="export_name"></a><span class='hs-definition'>export_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>safe_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>unsafe_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>threadsafe_name</span><span class='hs-layout'>,</span>
-<a name="line-984"></a>  <span class='hs-varid'>stdcall_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>ccall_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>cplusplus_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>dotnet_name</span><span class='hs-layout'>,</span>
-<a name="line-985"></a>  <span class='hs-varid'>jvm_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>js_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>forall_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>family_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Name</span>
-<a name="line-986"></a><span class='hs-definition'>export_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"export"</span>
-<a name="line-987"></a><a name="safe_name"></a><span class='hs-definition'>safe_name</span>       <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"safe"</span>
-<a name="line-988"></a><a name="unsafe_name"></a><span class='hs-definition'>unsafe_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"unsafe"</span>
-<a name="line-989"></a><a name="threadsafe_name"></a><span class='hs-definition'>threadsafe_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"threadsafe"</span>
-<a name="line-990"></a><a name="stdcall_name"></a><span class='hs-definition'>stdcall_name</span>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"stdcall"</span>
-<a name="line-991"></a><a name="ccall_name"></a><span class='hs-definition'>ccall_name</span>      <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"ccall"</span>
-<a name="line-992"></a><a name="cplusplus_name"></a><span class='hs-definition'>cplusplus_name</span>  <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"cplusplus"</span>
-<a name="line-993"></a><a name="dotnet_name"></a><span class='hs-definition'>dotnet_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"dotnet"</span>
-<a name="line-994"></a><a name="jvm_name"></a><span class='hs-definition'>jvm_name</span>        <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"jvm"</span>
-<a name="line-995"></a><a name="js_name"></a><span class='hs-definition'>js_name</span>         <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"js"</span>
-<a name="line-996"></a><a name="forall_name"></a><span class='hs-definition'>forall_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"forall"</span>
-<a name="line-997"></a><a name="family_name"></a><span class='hs-definition'>family_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"family"</span>
-<a name="line-998"></a>
-<a name="line-999"></a><a name="unit_tycon_name"></a><span class='hs-definition'>unit_tycon_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>fun_tycon_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>list_tycon_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>unboxed_singleton_tycon_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>QName</span>
-<a name="line-1000"></a><span class='hs-definition'>unit_tycon_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>unit_con_name</span>
-<a name="line-1001"></a><a name="fun_tycon_name"></a><span class='hs-definition'>fun_tycon_name</span>  <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>FunCon</span>
-<a name="line-1002"></a><a name="list_tycon_name"></a><span class='hs-definition'>list_tycon_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>ListCon</span>
-<a name="line-1003"></a><a name="unboxed_singleton_tycon_name"></a><span class='hs-definition'>unboxed_singleton_tycon_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>UnboxedSingleCon</span>
-<a name="line-1004"></a>
-<a name="line-1005"></a><a name="tuple_tycon_name"></a><span class='hs-definition'>tuple_tycon_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Boxed</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>QName</span>
-<a name="line-1006"></a><span class='hs-definition'>tuple_tycon_name</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>tuple_con_name</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span>
-<a name="line-1007"></a>
-<a name="line-1008"></a><a name="unit_tycon"></a><span class='hs-definition'>unit_tycon</span><span class='hs-layout'>,</span> <span class='hs-varid'>fun_tycon</span><span class='hs-layout'>,</span> <span class='hs-varid'>list_tycon</span><span class='hs-layout'>,</span> <span class='hs-varid'>unboxed_singleton_tycon</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Type</span>
-<a name="line-1009"></a><span class='hs-definition'>unit_tycon</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>TyCon</span> <span class='hs-varid'>unit_tycon_name</span>
-<a name="line-1010"></a><a name="fun_tycon"></a><span class='hs-definition'>fun_tycon</span>  <span class='hs-keyglyph'>=</span> <span class='hs-conid'>TyCon</span> <span class='hs-varid'>fun_tycon_name</span>
-<a name="line-1011"></a><a name="list_tycon"></a><span class='hs-definition'>list_tycon</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>TyCon</span> <span class='hs-varid'>list_tycon_name</span>
-<a name="line-1012"></a><a name="unboxed_singleton_tycon"></a><span class='hs-definition'>unboxed_singleton_tycon</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>TyCon</span> <span class='hs-varid'>unboxed_singleton_tycon_name</span>
-<a name="line-1013"></a>
-<a name="line-1014"></a><a name="tuple_tycon"></a><span class='hs-definition'>tuple_tycon</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Boxed</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Type</span>
-<a name="line-1015"></a><span class='hs-definition'>tuple_tycon</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>TyCon</span> <span class='hs-layout'>(</span><span class='hs-varid'>tuple_tycon_name</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span><span class='hs-layout'>)</span>
+<a name="line-785"></a>
+<a name="line-786"></a><a name="Pat"></a><span class='hs-comment'>-- | A pattern, to be matched against a value.</span>
+<a name="line-787"></a><a name="Pat"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Pat</span>
+<a name="line-788"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>PVar</span> <span class='hs-conid'>Name</span>                     <span class='hs-comment'>-- ^ variable</span>
+<a name="line-789"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PLit</span> <span class='hs-conid'>Literal</span>                  <span class='hs-comment'>-- ^ literal constant</span>
+<a name="line-790"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PNeg</span> <span class='hs-conid'>Pat</span>                      <span class='hs-comment'>-- ^ negated pattern</span>
+<a name="line-791"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PNPlusK</span> <span class='hs-conid'>Name</span> <span class='hs-conid'>Integer</span>          <span class='hs-comment'>-- ^ n+k pattern</span>
+<a name="line-792"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PInfixApp</span> <span class='hs-conid'>Pat</span> <span class='hs-conid'>QName</span> <span class='hs-conid'>Pat</span>       <span class='hs-comment'>-- ^ pattern with an infix data constructor</span>
+<a name="line-793"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PApp</span> <span class='hs-conid'>QName</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Pat</span><span class='hs-keyglyph'>]</span>              <span class='hs-comment'>-- ^ data constructor and argument patterns</span>
+<a name="line-794"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PTuple</span> <span class='hs-conid'>Boxed</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Pat</span><span class='hs-keyglyph'>]</span>            <span class='hs-comment'>-- ^ tuple pattern</span>
+<a name="line-795"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PList</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Pat</span><span class='hs-keyglyph'>]</span>                   <span class='hs-comment'>-- ^ list pattern</span>
+<a name="line-796"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PParen</span> <span class='hs-conid'>Pat</span>                    <span class='hs-comment'>-- ^ parenthesized pattern</span>
+<a name="line-797"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PRec</span> <span class='hs-conid'>QName</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>PatField</span><span class='hs-keyglyph'>]</span>         <span class='hs-comment'>-- ^ labelled pattern, record style</span>
+<a name="line-798"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PAsPat</span> <span class='hs-conid'>Name</span> <span class='hs-conid'>Pat</span>               <span class='hs-comment'>-- ^ @\@@-pattern</span>
+<a name="line-799"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PWildCard</span>                     <span class='hs-comment'>-- ^ wildcard pattern: @_@</span>
+<a name="line-800"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PIrrPat</span> <span class='hs-conid'>Pat</span>                   <span class='hs-comment'>-- ^ irrefutable pattern: @~/pat/@</span>
+<a name="line-801"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PatTypeSig</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>Pat</span> <span class='hs-conid'>Type</span>    <span class='hs-comment'>-- ^ pattern with type signature</span>
+<a name="line-802"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PViewPat</span> <span class='hs-conid'>Exp</span> <span class='hs-conid'>Pat</span>              <span class='hs-comment'>-- ^ view patterns of the form @(/exp/ -&gt; /pat/)@</span>
+<a name="line-803"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PRPat</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>RPat</span><span class='hs-keyglyph'>]</span>                  <span class='hs-comment'>-- ^ regular list pattern</span>
+<a name="line-804"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PXTag</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>XName</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>PXAttr</span><span class='hs-keyglyph'>]</span> <span class='hs-layout'>(</span><span class='hs-conid'>Maybe</span> <span class='hs-conid'>Pat</span><span class='hs-layout'>)</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Pat</span><span class='hs-keyglyph'>]</span>
+<a name="line-805"></a>                                    <span class='hs-comment'>-- ^ XML element pattern</span>
+<a name="line-806"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PXETag</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>XName</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>PXAttr</span><span class='hs-keyglyph'>]</span> <span class='hs-layout'>(</span><span class='hs-conid'>Maybe</span> <span class='hs-conid'>Pat</span><span class='hs-layout'>)</span>
+<a name="line-807"></a>                                    <span class='hs-comment'>-- ^ XML singleton element pattern</span>
+<a name="line-808"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PXPcdata</span> <span class='hs-conid'>String</span>               <span class='hs-comment'>-- ^ XML PCDATA pattern</span>
+<a name="line-809"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PXPatTag</span> <span class='hs-conid'>Pat</span>                  <span class='hs-comment'>-- ^ XML embedded pattern</span>
+<a name="line-810"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PXRPats</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>RPat</span><span class='hs-keyglyph'>]</span>                <span class='hs-comment'>-- ^ XML regular list pattern</span>
+<a name="line-811"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PExplTypeArg</span> <span class='hs-conid'>QName</span> <span class='hs-conid'>Type</span>       <span class='hs-comment'>-- ^ Explicit generics style type argument e.g. @f {| Int |} x = ...@</span>
+<a name="line-812"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PQuasiQuote</span> <span class='hs-conid'>String</span> <span class='hs-conid'>String</span>     <span class='hs-comment'>-- ^ quasi quote patter: @[$/name/| /string/ |]@</span>
+<a name="line-813"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PBangPat</span> <span class='hs-conid'>Pat</span>                  <span class='hs-comment'>-- ^ strict (bang) pattern: @f !x = ...@</span>
+<a name="line-814"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-815"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-816"></a><span class='hs-cpp'>#else</span>
+<a name="line-817"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-818"></a><span class='hs-cpp'>#endif</span>
+<a name="line-819"></a>
+<a name="line-820"></a><a name="PXAttr"></a><span class='hs-comment'>-- | An XML attribute in a pattern.</span>
+<a name="line-821"></a><a name="PXAttr"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>PXAttr</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>PXAttr</span> <span class='hs-conid'>XName</span> <span class='hs-conid'>Pat</span>
+<a name="line-822"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-823"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-824"></a><span class='hs-cpp'>#else</span>
+<a name="line-825"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-826"></a><span class='hs-cpp'>#endif</span>
+<a name="line-827"></a>
+<a name="line-828"></a><a name="RPatOp"></a><span class='hs-comment'>-- | A regular pattern operator.</span>
+<a name="line-829"></a><a name="RPatOp"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>RPatOp</span>
+<a name="line-830"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>RPStar</span>    <span class='hs-comment'>-- ^ @*@ = 0 or more</span>
+<a name="line-831"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPStarG</span>   <span class='hs-comment'>-- ^ @*!@ = 0 or more, greedy</span>
+<a name="line-832"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPPlus</span>    <span class='hs-comment'>-- ^ @+@ = 1 or more</span>
+<a name="line-833"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPPlusG</span>   <span class='hs-comment'>-- ^ @+!@ = 1 or more, greedy</span>
+<a name="line-834"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPOpt</span>     <span class='hs-comment'>-- ^ @?@ = 0 or 1</span>
+<a name="line-835"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPOptG</span>    <span class='hs-comment'>-- ^ @?!@ = 0 or 1, greedy</span>
+<a name="line-836"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-837"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-838"></a><span class='hs-cpp'>#else</span>
+<a name="line-839"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-840"></a><span class='hs-cpp'>#endif</span>
+<a name="line-841"></a>
+<a name="line-842"></a><a name="RPat"></a><span class='hs-comment'>-- | An entity in a regular pattern.</span>
+<a name="line-843"></a><a name="RPat"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>RPat</span>
+<a name="line-844"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>RPOp</span> <span class='hs-conid'>RPat</span> <span class='hs-conid'>RPatOp</span>      <span class='hs-comment'>-- ^ operator pattern, e.g. pat*</span>
+<a name="line-845"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPEither</span> <span class='hs-conid'>RPat</span> <span class='hs-conid'>RPat</span>    <span class='hs-comment'>-- ^ choice pattern, e.g. (1 | 2)</span>
+<a name="line-846"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPSeq</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>RPat</span><span class='hs-keyglyph'>]</span>          <span class='hs-comment'>-- ^ sequence pattern, e.g. (| 1, 2, 3 |)</span>
+<a name="line-847"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPGuard</span> <span class='hs-conid'>Pat</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Stmt</span><span class='hs-keyglyph'>]</span>    <span class='hs-comment'>-- ^ guarded pattern, e.g. (| p | p &lt; 3 |)</span>
+<a name="line-848"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPCAs</span> <span class='hs-conid'>Name</span> <span class='hs-conid'>RPat</span>       <span class='hs-comment'>-- ^ non-linear variable binding, e.g. (foo\@:(1 | 2))*</span>
+<a name="line-849"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPAs</span> <span class='hs-conid'>Name</span> <span class='hs-conid'>RPat</span>        <span class='hs-comment'>-- ^ linear variable binding, e.g. foo\@(1 | 2)</span>
+<a name="line-850"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPParen</span> <span class='hs-conid'>RPat</span>          <span class='hs-comment'>-- ^ parenthesised pattern, e.g. (2*)</span>
+<a name="line-851"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RPPat</span> <span class='hs-conid'>Pat</span>             <span class='hs-comment'>-- ^ an ordinary pattern</span>
+<a name="line-852"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-853"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-854"></a><span class='hs-cpp'>#else</span>
+<a name="line-855"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-856"></a><span class='hs-cpp'>#endif</span>
+<a name="line-857"></a>
+<a name="line-858"></a><a name="PatField"></a><span class='hs-comment'>-- | An /fpat/ in a labeled record pattern.</span>
+<a name="line-859"></a><a name="PatField"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>PatField</span>
+<a name="line-860"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>PFieldPat</span> <span class='hs-conid'>QName</span> <span class='hs-conid'>Pat</span>       <span class='hs-comment'>-- ^ ordinary label-pattern pair</span>
+<a name="line-861"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PFieldPun</span> <span class='hs-conid'>Name</span>            <span class='hs-comment'>-- ^ record field pun</span>
+<a name="line-862"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>PFieldWildcard</span>            <span class='hs-comment'>-- ^ record field wildcard</span>
+<a name="line-863"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-864"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-865"></a><span class='hs-cpp'>#else</span>
+<a name="line-866"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-867"></a><span class='hs-cpp'>#endif</span>
+<a name="line-868"></a>
+<a name="line-869"></a><a name="Stmt"></a><span class='hs-comment'>-- | A statement, representing both a /stmt/ in a @do@-expression,</span>
+<a name="line-870"></a><a name="Stmt"></a><span class='hs-comment'>--   an ordinary /qual/ in a list comprehension, as well as a /stmt/</span>
+<a name="line-871"></a><a name="Stmt"></a><span class='hs-comment'>--   in a pattern guard.</span>
+<a name="line-872"></a><a name="Stmt"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Stmt</span>
+<a name="line-873"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Generator</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>Pat</span> <span class='hs-conid'>Exp</span>
+<a name="line-874"></a>                        <span class='hs-comment'>-- ^ a generator: /pat/ @&lt;-@ /exp/</span>
+<a name="line-875"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>Qualifier</span> <span class='hs-conid'>Exp</span>     <span class='hs-comment'>-- ^ an /exp/ by itself: in a @do@-expression,</span>
+<a name="line-876"></a>                        <span class='hs-comment'>--   an action whose result is discarded;</span>
+<a name="line-877"></a>                        <span class='hs-comment'>--   in a list comprehension and pattern guard,</span>
+<a name="line-878"></a>                        <span class='hs-comment'>--   a guard expression</span>
+<a name="line-879"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>LetStmt</span> <span class='hs-conid'>Binds</span>     <span class='hs-comment'>-- ^ local bindings</span>
+<a name="line-880"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>RecStmt</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Stmt</span><span class='hs-keyglyph'>]</span>    <span class='hs-comment'>-- ^ a recursive binding group for arrows</span>
+<a name="line-881"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-882"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-883"></a><span class='hs-cpp'>#else</span>
+<a name="line-884"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-885"></a><span class='hs-cpp'>#endif</span>
+<a name="line-886"></a>
+<a name="line-887"></a><a name="QualStmt"></a><span class='hs-comment'>-- | A general /transqual/ in a list comprehension,</span>
+<a name="line-888"></a><a name="QualStmt"></a><span class='hs-comment'>--   which could potentially be a transform of the kind</span>
+<a name="line-889"></a><a name="QualStmt"></a><span class='hs-comment'>--   enabled by TransformListComp.</span>
+<a name="line-890"></a><a name="QualStmt"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>QualStmt</span>
+<a name="line-891"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>QualStmt</span>     <span class='hs-conid'>Stmt</span>         <span class='hs-comment'>-- ^ an ordinary statement</span>
+<a name="line-892"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>ThenTrans</span>    <span class='hs-conid'>Exp</span>          <span class='hs-comment'>-- ^ @then@ /exp/</span>
+<a name="line-893"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>ThenBy</span>       <span class='hs-conid'>Exp</span> <span class='hs-conid'>Exp</span>      <span class='hs-comment'>-- ^ @then@ /exp/ @by@ /exp/</span>
+<a name="line-894"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>GroupBy</span>      <span class='hs-conid'>Exp</span>          <span class='hs-comment'>-- ^ @then@ @group@ @by@ /exp/</span>
+<a name="line-895"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>GroupUsing</span>   <span class='hs-conid'>Exp</span>          <span class='hs-comment'>-- ^ @then@ @group@ @using@ /exp/</span>
+<a name="line-896"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>GroupByUsing</span> <span class='hs-conid'>Exp</span> <span class='hs-conid'>Exp</span>      <span class='hs-comment'>-- ^ @then@ @group@ @by@ /exp/ @using@ /exp/</span>
+<a name="line-897"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-898"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-899"></a><span class='hs-cpp'>#else</span>
+<a name="line-900"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-901"></a><span class='hs-cpp'>#endif</span>
+<a name="line-902"></a>
+<a name="line-903"></a><a name="FieldUpdate"></a><span class='hs-comment'>-- | An /fbind/ in a labeled construction or update expression.</span>
+<a name="line-904"></a><a name="FieldUpdate"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>FieldUpdate</span>
+<a name="line-905"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>FieldUpdate</span> <span class='hs-conid'>QName</span> <span class='hs-conid'>Exp</span>     <span class='hs-comment'>-- ^ ordinary label-expresion pair</span>
+<a name="line-906"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>FieldPun</span> <span class='hs-conid'>Name</span>             <span class='hs-comment'>-- ^ record field pun</span>
+<a name="line-907"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>FieldWildcard</span>             <span class='hs-comment'>-- ^ record field wildcard</span>
+<a name="line-908"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-909"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-910"></a><span class='hs-cpp'>#else</span>
+<a name="line-911"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-912"></a><span class='hs-cpp'>#endif</span>
+<a name="line-913"></a>
+<a name="line-914"></a><a name="Alt"></a><span class='hs-comment'>-- | An /alt/ alternative in a @case@ expression.</span>
+<a name="line-915"></a><a name="Alt"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>Alt</span>
+<a name="line-916"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Alt</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-conid'>Pat</span> <span class='hs-conid'>GuardedAlts</span> <span class='hs-conid'>Binds</span>
+<a name="line-917"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-918"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-919"></a><span class='hs-cpp'>#else</span>
+<a name="line-920"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-921"></a><span class='hs-cpp'>#endif</span>
+<a name="line-922"></a>
+<a name="line-923"></a><a name="GuardedAlts"></a><span class='hs-comment'>-- | The right-hand sides of a @case@ alternative,</span>
+<a name="line-924"></a><a name="GuardedAlts"></a><span class='hs-comment'>--   which may be a single right-hand side or a</span>
+<a name="line-925"></a><a name="GuardedAlts"></a><span class='hs-comment'>--   set of guarded ones.</span>
+<a name="line-926"></a><a name="GuardedAlts"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>GuardedAlts</span>
+<a name="line-927"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>UnGuardedAlt</span> <span class='hs-conid'>Exp</span>          <span class='hs-comment'>-- ^ @-&gt;@ /exp/</span>
+<a name="line-928"></a>    <span class='hs-keyglyph'>|</span> <span class='hs-conid'>GuardedAlts</span>  <span class='hs-keyglyph'>[</span><span class='hs-conid'>GuardedAlt</span><span class='hs-keyglyph'>]</span> <span class='hs-comment'>-- ^ /gdpat/</span>
+<a name="line-929"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-930"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-931"></a><span class='hs-cpp'>#else</span>
+<a name="line-932"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-933"></a><span class='hs-cpp'>#endif</span>
+<a name="line-934"></a>
+<a name="line-935"></a><a name="GuardedAlt"></a><span class='hs-comment'>-- | A guarded case alternative @|@ /stmts/ @-&gt;@ /exp/.</span>
+<a name="line-936"></a><a name="GuardedAlt"></a><span class='hs-keyword'>data</span> <span class='hs-conid'>GuardedAlt</span>
+<a name="line-937"></a>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>GuardedAlt</span> <span class='hs-conid'>SrcLoc</span> <span class='hs-keyglyph'>[</span><span class='hs-conid'>Stmt</span><span class='hs-keyglyph'>]</span> <span class='hs-conid'>Exp</span>
+<a name="line-938"></a><span class='hs-cpp'>#ifdef __GLASGOW_HASKELL__</span>
+<a name="line-939"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>,</span><span class='hs-conid'>Typeable</span><span class='hs-layout'>,</span><span class='hs-conid'>Data</span><span class='hs-layout'>)</span>
+<a name="line-940"></a><span class='hs-cpp'>#else</span>
+<a name="line-941"></a>  <span class='hs-keyword'>deriving</span> <span class='hs-layout'>(</span><span class='hs-conid'>Eq</span><span class='hs-layout'>,</span><span class='hs-conid'>Ord</span><span class='hs-layout'>,</span><span class='hs-conid'>Show</span><span class='hs-layout'>)</span>
+<a name="line-942"></a><span class='hs-cpp'>#endif</span>
+<a name="line-943"></a>
+<a name="line-944"></a><span class='hs-comment'>-----------------------------------------------------------------------------</span>
+<a name="line-945"></a><span class='hs-comment'>-- Builtin names.</span>
+<a name="line-946"></a>
+<a name="line-947"></a><a name="prelude_mod"></a><span class='hs-definition'>prelude_mod</span><span class='hs-layout'>,</span> <span class='hs-varid'>main_mod</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>ModuleName</span>
+<a name="line-948"></a><span class='hs-definition'>prelude_mod</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>ModuleName</span> <span class='hs-str'>"Prelude"</span>
+<a name="line-949"></a><a name="main_mod"></a><span class='hs-definition'>main_mod</span>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>ModuleName</span> <span class='hs-str'>"Main"</span>
+<a name="line-950"></a>
+<a name="line-951"></a><a name="main_name"></a><span class='hs-definition'>main_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Name</span>
+<a name="line-952"></a><span class='hs-definition'>main_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"main"</span>
+<a name="line-953"></a>
+<a name="line-954"></a><a name="unit_con_name"></a><span class='hs-definition'>unit_con_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>QName</span>
+<a name="line-955"></a><span class='hs-definition'>unit_con_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>UnitCon</span>
+<a name="line-956"></a>
+<a name="line-957"></a><a name="tuple_con_name"></a><span class='hs-definition'>tuple_con_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Boxed</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>QName</span>
+<a name="line-958"></a><span class='hs-definition'>tuple_con_name</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-layout'>(</span><span class='hs-conid'>TupleCon</span> <span class='hs-varid'>b</span> <span class='hs-layout'>(</span><span class='hs-varid'>i</span><span class='hs-varop'>+</span><span class='hs-num'>1</span><span class='hs-layout'>)</span><span class='hs-layout'>)</span>
+<a name="line-959"></a>
+<a name="line-960"></a><a name="list_cons_name"></a><span class='hs-definition'>list_cons_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>QName</span>
+<a name="line-961"></a><span class='hs-definition'>list_cons_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>Cons</span>
+<a name="line-962"></a>
+<a name="line-963"></a><a name="unboxed_singleton_con_name"></a><span class='hs-definition'>unboxed_singleton_con_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>QName</span>
+<a name="line-964"></a><span class='hs-definition'>unboxed_singleton_con_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>UnboxedSingleCon</span>
+<a name="line-965"></a>
+<a name="line-966"></a><a name="unit_con"></a><span class='hs-definition'>unit_con</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Exp</span>
+<a name="line-967"></a><span class='hs-definition'>unit_con</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Con</span> <span class='hs-varid'>unit_con_name</span>
+<a name="line-968"></a>
+<a name="line-969"></a><a name="tuple_con"></a><span class='hs-definition'>tuple_con</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Boxed</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Exp</span>
+<a name="line-970"></a><span class='hs-definition'>tuple_con</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Con</span> <span class='hs-layout'>(</span><span class='hs-varid'>tuple_con_name</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span><span class='hs-layout'>)</span>
+<a name="line-971"></a>
+<a name="line-972"></a><a name="unboxed_singleton_con"></a><span class='hs-definition'>unboxed_singleton_con</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Exp</span>
+<a name="line-973"></a><span class='hs-definition'>unboxed_singleton_con</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Con</span> <span class='hs-layout'>(</span><span class='hs-varid'>unboxed_singleton_con_name</span><span class='hs-layout'>)</span>
+<a name="line-974"></a>
+<a name="line-975"></a><a name="as_name"></a><span class='hs-definition'>as_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>qualified_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>hiding_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>minus_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>bang_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>dot_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>star_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Name</span>
+<a name="line-976"></a><span class='hs-definition'>as_name</span>        <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"as"</span>
+<a name="line-977"></a><a name="qualified_name"></a><span class='hs-definition'>qualified_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"qualified"</span>
+<a name="line-978"></a><a name="hiding_name"></a><span class='hs-definition'>hiding_name</span>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"hiding"</span>
+<a name="line-979"></a><a name="minus_name"></a><span class='hs-definition'>minus_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Symbol</span> <span class='hs-str'>"-"</span>
+<a name="line-980"></a><a name="bang_name"></a><span class='hs-definition'>bang_name</span>      <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Symbol</span> <span class='hs-str'>"!"</span>
+<a name="line-981"></a><a name="dot_name"></a><span class='hs-definition'>dot_name</span>       <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Symbol</span> <span class='hs-str'>"."</span>
+<a name="line-982"></a><a name="star_name"></a><span class='hs-definition'>star_name</span>      <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Symbol</span> <span class='hs-str'>"*"</span>
+<a name="line-983"></a>
+<a name="line-984"></a><a name="export_name"></a><span class='hs-definition'>export_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>safe_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>unsafe_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>threadsafe_name</span><span class='hs-layout'>,</span>
+<a name="line-985"></a>  <span class='hs-varid'>stdcall_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>ccall_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>cplusplus_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>dotnet_name</span><span class='hs-layout'>,</span>
+<a name="line-986"></a>  <span class='hs-varid'>jvm_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>js_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>forall_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>family_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Name</span>
+<a name="line-987"></a><span class='hs-definition'>export_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"export"</span>
+<a name="line-988"></a><a name="safe_name"></a><span class='hs-definition'>safe_name</span>       <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"safe"</span>
+<a name="line-989"></a><a name="unsafe_name"></a><span class='hs-definition'>unsafe_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"unsafe"</span>
+<a name="line-990"></a><a name="threadsafe_name"></a><span class='hs-definition'>threadsafe_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"threadsafe"</span>
+<a name="line-991"></a><a name="stdcall_name"></a><span class='hs-definition'>stdcall_name</span>    <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"stdcall"</span>
+<a name="line-992"></a><a name="ccall_name"></a><span class='hs-definition'>ccall_name</span>      <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"ccall"</span>
+<a name="line-993"></a><a name="cplusplus_name"></a><span class='hs-definition'>cplusplus_name</span>  <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"cplusplus"</span>
+<a name="line-994"></a><a name="dotnet_name"></a><span class='hs-definition'>dotnet_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"dotnet"</span>
+<a name="line-995"></a><a name="jvm_name"></a><span class='hs-definition'>jvm_name</span>        <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"jvm"</span>
+<a name="line-996"></a><a name="js_name"></a><span class='hs-definition'>js_name</span>         <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"js"</span>
+<a name="line-997"></a><a name="forall_name"></a><span class='hs-definition'>forall_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"forall"</span>
+<a name="line-998"></a><a name="family_name"></a><span class='hs-definition'>family_name</span>     <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Ident</span> <span class='hs-str'>"family"</span>
+<a name="line-999"></a>
+<a name="line-1000"></a><a name="unit_tycon_name"></a><span class='hs-definition'>unit_tycon_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>fun_tycon_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>list_tycon_name</span><span class='hs-layout'>,</span> <span class='hs-varid'>unboxed_singleton_tycon_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>QName</span>
+<a name="line-1001"></a><span class='hs-definition'>unit_tycon_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>unit_con_name</span>
+<a name="line-1002"></a><a name="fun_tycon_name"></a><span class='hs-definition'>fun_tycon_name</span>  <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>FunCon</span>
+<a name="line-1003"></a><a name="list_tycon_name"></a><span class='hs-definition'>list_tycon_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>ListCon</span>
+<a name="line-1004"></a><a name="unboxed_singleton_tycon_name"></a><span class='hs-definition'>unboxed_singleton_tycon_name</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>Special</span> <span class='hs-conid'>UnboxedSingleCon</span>
+<a name="line-1005"></a>
+<a name="line-1006"></a><a name="tuple_tycon_name"></a><span class='hs-definition'>tuple_tycon_name</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Boxed</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>QName</span>
+<a name="line-1007"></a><span class='hs-definition'>tuple_tycon_name</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span> <span class='hs-keyglyph'>=</span> <span class='hs-varid'>tuple_con_name</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span>
+<a name="line-1008"></a>
+<a name="line-1009"></a><a name="unit_tycon"></a><span class='hs-definition'>unit_tycon</span><span class='hs-layout'>,</span> <span class='hs-varid'>fun_tycon</span><span class='hs-layout'>,</span> <span class='hs-varid'>list_tycon</span><span class='hs-layout'>,</span> <span class='hs-varid'>unboxed_singleton_tycon</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Type</span>
+<a name="line-1010"></a><span class='hs-definition'>unit_tycon</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>TyCon</span> <span class='hs-varid'>unit_tycon_name</span>
+<a name="line-1011"></a><a name="fun_tycon"></a><span class='hs-definition'>fun_tycon</span>  <span class='hs-keyglyph'>=</span> <span class='hs-conid'>TyCon</span> <span class='hs-varid'>fun_tycon_name</span>
+<a name="line-1012"></a><a name="list_tycon"></a><span class='hs-definition'>list_tycon</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>TyCon</span> <span class='hs-varid'>list_tycon_name</span>
+<a name="line-1013"></a><a name="unboxed_singleton_tycon"></a><span class='hs-definition'>unboxed_singleton_tycon</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>TyCon</span> <span class='hs-varid'>unboxed_singleton_tycon_name</span>
+<a name="line-1014"></a>
+<a name="line-1015"></a><a name="tuple_tycon"></a><span class='hs-definition'>tuple_tycon</span> <span class='hs-keyglyph'>::</span> <span class='hs-conid'>Boxed</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Int</span> <span class='hs-keyglyph'>-&gt;</span> <span class='hs-conid'>Type</span>
+<a name="line-1016"></a><span class='hs-definition'>tuple_tycon</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span> <span class='hs-keyglyph'>=</span> <span class='hs-conid'>TyCon</span> <span class='hs-layout'>(</span><span class='hs-varid'>tuple_tycon_name</span> <span class='hs-varid'>b</span> <span class='hs-varid'>i</span><span class='hs-layout'>)</span>
 </pre></body>
 </html>
